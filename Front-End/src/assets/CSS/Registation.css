@@ -1,0 +1,33 @@
+.bodyclr {
+    background-color: #02C39A;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+.signup-content {
+    background: #fff;
+    margin-top: 40px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+    padding: 50px 45px;
+}
+
+.regsubmitbtn {
+    margin-left: 250px;
+    margin-right: 200px;
+    border-radius: 8px;
+    background-color: #02C39A;
+    text-align: center;
+}
+
+.signintxt {
+    margin-left: 400px;
+}
+
+.termsText {
+    margin-left: 370px;
+}
