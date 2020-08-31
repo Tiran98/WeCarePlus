@@ -5,16 +5,16 @@ import 'mutationobserver-shim'
 import Vue from 'vue'
 import App from './App'
 import router from './router/index'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import VueResource from 'vue-resource'
 
-Vue.use(VueAxios, axios)
+Vue.use(VueResource)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+    render: h => h(App),
     router,
     components: { App },
     template: '<App/>'
