@@ -161,10 +161,13 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
+        Fruitcake\Cors\CorsServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...

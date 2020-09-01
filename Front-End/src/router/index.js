@@ -1,26 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
-import Login from '../views/Registration/Login.vue'
-import registation from '../views/Registration/patientRegistration.vue'
-import home from '../views/Home/home.vue'
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes: [{
             path: "/register",
-            name: "register",
-            component: registation
+            component: require('../views/Registration/patientRegistration.vue'),
+            meta: {
+                forAuth: true
+            }
         },
         {
             path: "/login",
-            name: "login",
-            component: Login
+            component: require('../views/Registration/Login.vue'),
+            meta: {
+                forAuth: true
+            }
         },
         {
             path: "/home",
-            component: home
+            component: require('../views/Home/home.vue'),
+            meta: {
+                forAuth: true
+            }
         }
-    ]
-});
+    ],
+    linkActiveClass: 'active'
+})
+
+export default router
