@@ -11,6 +11,6 @@ class Patient extends Eloquent
     protected $collection = 'Patient';
 
     protected $fillable = [
-        'name', 'email','password','repassword','gender','age','address'
+        'Patient Name', 'Email','Password','Gender','Age','Address'
     ];
 }
