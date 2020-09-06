@@ -1,24 +1,27 @@
 <template>
   <div id="app">
-    <ptRegistation></ptRegistation>
-    <!--<router-view></router-view> -->
+    <router-view />
   </div>
 </template>
 
-<script>
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
 
-import ptRegistation from '../src/views/Registration/patientRegistration'
-//import ptLogin from '../src/views/Registration/Login'
+#nav {
+  padding: 30px;
 
-export default {
-  name: 'App',
-  components: {
-    ptRegistation,
-    //ptLogin
-    
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
   }
 }
-</script>
-
-<style>
 </style>
