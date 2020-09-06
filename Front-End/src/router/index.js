@@ -25,6 +25,13 @@ const router = new VueRouter({
             meta: {
                 forAuth: true
             }
+        },
+        {
+            path: "/EmpEditProfile",
+            component: require('../views/Employee/EmpEditProfile.vue'),
+            meta: {
+                forAuth: true
+            }
         }
     ],
     linkActiveClass: 'active'
