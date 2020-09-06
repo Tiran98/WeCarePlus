@@ -7,19 +7,19 @@
                         <h3 class="signin_txtTitle">Patient Login</h3>
                         <form>
                             <div class="form-group">
-                                <input v-model="email" type="text" class="form-control" placeholder="Your Email *" value="" />
+                                <input type="text" class="form-control" placeholder="Your Email *" value="" />
                             </div>
                             <div class="form-group">
-                                <input v-model="password" type="password" class="form-control" placeholder="Your Password *" value="" />
+                                <input type="password" class="form-control" placeholder="Your Password *" value="" />
                             </div>
                             <div class="form-group">
                                 <a href="#" class="ForgetPwd">Forget Password?</a>
                             </div>
                             <div class="form-group">
-                                <button @click="login" type="submit" class="btnSubmit signinbtn">Sign In</button>
+                                <input type="submit" class="btnSubmit signinbtn" value="Sign In" />
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btnSubmit signupbtn">Sign Up</button>
+                                <input type="submit" class="btnSubmit signupbtn" value="Sign Up" />
                             </div>
                         </form>
                     </div>
@@ -30,14 +30,9 @@
 </template>
 
 <script>
-    export default{
-        data(){
-            return{
-                email : '',
-                password : ''
-            }
-        }
-    }
+export default {
+    
+}
 </script>
 
 <style scoped>

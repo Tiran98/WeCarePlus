@@ -1,21 +1,19 @@
-import '@babel/polyfill'
-import 'mutationobserver-shim'
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import router from './router/index'
-import VueResource from 'vue-resource'
+import App from './App.vue'
 
-Vue.use(VueResource)
+import Vuetify from 'vuetify'
+import vuetify from './plugins/vuetify';
+import 'vuetify/dist/vuetify.min.css'
+import router from './router'
+import moment from 'moment'
+
+Vue.use(Vuetify)
+Vue.prototype.moment = moment
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    render: h => h(App),
-    router,
-    components: { App },
-    template: '<App/>'
-})
+  vuetify,
+  router,
+  render: h => h(App)
+}).$mount('#app')
