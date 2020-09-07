@@ -4,9 +4,10 @@ import Dashboard from '../views/Dashboard.vue'
 import Login from '../views/Registration/Login.vue'
 import registation from '../views/Registration/patientRegistration.vue'
 import home from '../views/Home/home.vue'
-import PatientList from '../views/PatientList.vue'
+import PatientList from '../views/Patient/PatientList.vue'
 import Missing from '../views/Missing.vue'
-import AddNewPatient from '../views/AddNewPatient.vue'
+import WelcomePage from '../views/WelcomePage.vue'
+import AddNewPatient from '../views/Patient/AddNewPatient.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ export default new VueRouter({
   mode: 'history',
   routes: [{
       path: '/',
+      name: 'Welcome Page',
+      component: WelcomePage
+    },
+    {
+      path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
     },
