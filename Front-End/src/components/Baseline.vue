@@ -36,7 +36,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <!-- <MainDash /> -->
+   
 
     <v-app-bar app color="primary" dark>
       <v-toolbar-title class="toolbar-title">WeCare+</v-toolbar-title>
@@ -71,12 +71,12 @@
 </template>
 
 <script>
-// import MainDash from "../components/MainDash.vue";
+
 
 export default {
   name: "Baseline",
   components: {
-    // MainDash,
+    
   },
   data() {
     return {
@@ -89,7 +89,6 @@ export default {
         {
           action: "mdi-bed",
           title: "Patient",
-          // active: true,
           items: [
             { action: "/patientList", title: "Patient List" },
             { action: "/addNewPatient", title: "Add New Patient" },
@@ -113,7 +112,11 @@ export default {
         {
           action: "mdi-account-group",
           title: "Employee",
-          items: [{ title: "List Item" }],
+          items: [
+            { action: "/EmpList", title: "Employee List" },
+            { action: "/EmpAddNew", title: "Add New Employee" },
+            
+          ],
         },
         {
           action: "mdi-truck-check",
