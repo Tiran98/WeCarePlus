@@ -3,42 +3,26 @@ import VueRouter from 'vue-router';
 import Login from '../views/Registration/Login.vue'
 import registation from '../views/Registration/patientRegistration.vue'
 import home from '../views/Home/home.vue'
-<<<<<<< Updated upstream
-=======
 import PatientList from '../views/Patient/PatientList.vue'
 import Missing from '../views/Missing.vue'
-// import WelcomePage from '../views/WelcomePage.vue'
+import WelcomePage from '../views/WelcomePage.vue'
 import AddNewPatient from '../views/Patient/AddNewPatient.vue'
 import AddChanneling from '../views/Channeling/AddChanneling.vue'
 import ChannelingList from '../views/Channeling/ChannelingList.vue'
 import TimeSet from '../views/Channeling/TimeSet.vue'
 import UpdateChannel from '../views/Channeling/UpdateChannel.vue'
 import AppointmentReceipt from '../views/Channeling/AppointmentReceipt.vue'
->>>>>>> Stashed changes
 
 Vue.use(VueRouter);
 
 export default new VueRouter({
-<<<<<<< Updated upstream
-    mode: 'history',
-    routes: [{
-            path: "/register",
-            name: "register",
-            component: registation
-        },
-        {
-            path: "/login",
-            name: "login",
-            component: Login
-        },
-        {
-            path: "/home",
-            component: home
-        }
-    ]
-=======
   mode: 'history',
   routes: [
+    {
+      path: '/',
+      name: 'WelcomePage',
+      component: WelcomePage
+    },
     {
       path: '/dashboard',
       name: 'Dashboard',
@@ -111,5 +95,4 @@ export default new VueRouter({
     },
 
   ]
->>>>>>> Stashed changes
 });
