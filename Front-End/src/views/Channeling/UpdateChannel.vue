@@ -5,9 +5,9 @@
     v-model="valid"
     lazy-validation
   >
-
-  <v-form-title><h3><B> Add Appointmnent </B></h3></v-form-title>
-
+    
+ <v-form-title><h3><B> Update Appointmnent </B></h3></v-form-title>
+    
     <v-text-field
       v-model="name"
       :counter="10"
@@ -74,13 +74,10 @@
             </v-date-picker>
              </v-row>
 
-     <v-select
-        v-model="select"
-        :items="items"
-        :rules="[v => !!v || 'Time is required']"
-        label="Time"
-        required
-      ></v-select>        
+     <v-row justify="center">
+        <v-time-picker v-model="e4" color="green lighten-1">
+            </v-time-picker>
+             </v-row>         
 
     <v-text-field
       v-model="name"
@@ -135,7 +132,7 @@
       valid: true,
       name: '',
       nameRules: [
-        v => !!v || 'Full Name is required',
+        v => !!v || 'Your Name is required',
         v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
 
@@ -163,17 +160,10 @@
 
         return: {
         picker: new Date().toISOString().substr(0,10),
+        e4:null,
         radioGroup: 1,
         //radioGroup: 1,
        },
-
-       select: null,
-      items: [
-        '09.00a.m',
-        '12.00p.m',
-        '04.00p.m',
-        '08.00p.m',
-      ],
     
 
       checkbox: false,
