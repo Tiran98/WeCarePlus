@@ -13,6 +13,16 @@ import TimeSet from '../views/Channeling/TimeSet.vue'
 import UpdateChannel from '../views/Channeling/UpdateChannel.vue'
 import AppointmentReceipt from '../views/Channeling/AppointmentReceipt.vue'
 
+
+// Employee
+import EmpList from '../views/Employee/EmpList.vue'
+import EmpSignIn from '../views/Employee/EmpSignIn.vue'
+import EmpAddNew from '../views/Employee/EmpAddNew.vue'
+import EmpEditProfile from '../views/Employee/EmpEditProfile.vue'
+
+Vue.use(VueRouter)
+import EmpProfile from '../views/Employee/EmpProfile.vue'
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -89,10 +99,37 @@ export default new VueRouter({
     },
 
     {
+
+      path: '/EmpEditProfile',
+      name: 'EmpEditProfile',
+      component: EmpEditProfile
+    },
+    {
+
       path: "/AppointmentReceipt",
       name: "Appointment Receipt",
       component: AppointmentReceipt
     },
+    {
+      path: '/EmpList',
+      name: 'EmpList',
+      component: EmpList
+    },
+    {
+      path: '/EmpSignIn',
+      name: 'EmpSignIn',
+      component: EmpSignIn
+    },
+    {
+      path: '/EmpAddNew',
+      name: 'EmpAddNew',
+      component: EmpAddNew
+    },
+      {
+      path: '/EmpProfile',
+      name: 'EmpProfile',
+      component: EmpProfile
+    }
 
   ]
 });
