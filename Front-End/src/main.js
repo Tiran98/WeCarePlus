@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify';
 import 'vuetify/dist/vuetify.min.css'
 import router from './router'
 import moment from 'moment'
+import store from './store'
 
 Vue.use(Vuetify)
 Vue.prototype.moment = moment
@@ -13,7 +14,8 @@ Vue.prototype.moment = moment
 Vue.config.productionTip = false
 
 new Vue({
-    vuetify,
-    router,
-    render: h => h(App)
+  vuetify,
+  router,
+  store,
+  render: h => h(App)
 }).$mount('#app')

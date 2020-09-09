@@ -7,7 +7,10 @@ import home from '../views/Home/home.vue'
 import PatientList from '../views/PatientList.vue'
 import Missing from '../views/Missing.vue'
 import AddNewPatient from '../views/AddNewPatient.vue'
-
+import EmpList from '../views/Employee/EmpList.vue'
+import EmpSignIn from '../views/Employee/EmpSignIn.vue'
+import EmpAddNew from '../views/Employee/EmpAddNew.vue'
+import EmpEditProfile from '../views/Employee/EmpEditProfile.vue'
 
 Vue.use(VueRouter)
 
@@ -54,6 +57,22 @@ export default new VueRouter({
         {
             path: "/home",
             component: home
+        },
+        {
+            path: '/EmpSignIn',
+            name: 'EmpSignIn',
+            component: EmpSignIn
+        },
+        {
+            path: '/EmpAddNew',
+            name: 'EmpAddNew',
+            component: EmpAddNew
+        },
+        {
+            path: '/EmpEditProfile',
+            name: 'EmpEditProfile',
+            component: EmpEditProfile
         }
+        
     ]
 });
