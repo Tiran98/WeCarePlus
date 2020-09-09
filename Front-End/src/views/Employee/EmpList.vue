@@ -4,7 +4,6 @@
       <h3>Employee List</h3>
       <hr />
       
-      
       <div class="d-flex flex-row-reverse">
         <div class="searchbox">
           <v-text-field
@@ -24,6 +23,8 @@
         :items-per-page="10"
         class="elevation-1"
       ></v-data-table>
+      
+      <!-- import baseline -->
       <Baseline />
     </div>
         
@@ -70,6 +71,7 @@ h3 {
   color: teal;
   font-weight: 500;
   font-size: 40px;
+  padding-left: 10px;
 }
 .searchbox {
   margin: auto;
