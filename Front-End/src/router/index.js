@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
-import Login from '../views/Registration/Login.vue'
-import registation from '../views/Registration/patientRegistration.vue'
 import home from '../views/Home/home.vue'
 import PatientList from '../views/Patient/PatientList.vue'
+import Patientlogin from '../views/Patient/PatientLogin.vue'
+import PatientReg from '../views/Patient/PatientRegistration.vue'
 import Missing from '../views/Missing.vue'
 import WelcomePage from '../views/WelcomePage.vue'
 import AddNewPatient from '../views/Patient/AddNewPatient.vue'
@@ -46,14 +46,14 @@ export default new VueRouter({
       component: Missing
     },
     {
-      path: "/register",
-      name: "register",
-      component: registation
+      path: "/Patientreg",
+      name: "Patientreg",
+      component: PatientReg
     },
     {
-      path: "/login",
-      name: "login",
-      component: Login
+      path: "/Patientlogin",
+      name: "Patientlogin",
+      component: Patientlogin
     },
     {
       path: "/home",

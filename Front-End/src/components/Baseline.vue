@@ -56,7 +56,7 @@
           </v-btn>
         </template>
         <v-card>
-          <router-link to="/home" class="logout-btn">Logout</router-link>
+          <router-link to="/" class="logout-btn">Logout</router-link>
           <!-- <a href="Home/home.vue" class="logout-btn">Logout</a> -->
         </v-card>
       </v-menu>

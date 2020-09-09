@@ -18,6 +18,7 @@
     "vue-clock": "^0.3.1",
     "vue-moment": "^4.1.0",
     "vue-router": "^3.2.0",
+    "vuelidate": "^0.7.5",
     "vuetify": "^2.3.9",
     "vuex": "^3.4.0"
   },
