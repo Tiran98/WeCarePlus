@@ -9,10 +9,12 @@
 <script>
 export default {
   name: "Clock",
-  data: {
+  data: function() {
+return {
     time: "",
     date: "",
-  },
+  };
+},
 };
 
 var week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
