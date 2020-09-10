@@ -11,23 +11,25 @@
                 <v-subheader class="toolbar-title">WeCare+</v-subheader>
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form @submit.prevent="Login" v-model="valid">
                   <v-text-field
-                    label="Login"
+                    v-model="email"
+                    label="Email"
                     name="login"
                     prepend-icon="mdi-account"
                     type="text"
                   ></v-text-field>
 
                   <v-text-field
+                    v-model="password"
                     id="password"
                     label="Password"
                     name="password"
                     prepend-icon="mdi-lock"
                     type="password"
                   ></v-text-field>
+                  <v-btn block color="primary" @click="Login">Login</v-btn>
                 </v-form>
-                <v-btn block color="primary">Login</v-btn>
               </v-card-text>
               <v-card-actions>
                 <router-link to="/Patientreg">
@@ -45,7 +47,31 @@
 </template>
 
 <script>
+import axios from 'axios'
+import router from '../../router'
+
 export default {
+  data:() => ({
+    return :{
+      patient:{
+        email:'',
+        password:''
+      }
+    } 
+  }),
+  methods:{
+    Login(){
+      axios.post('http://localhost:8000/api/login',{
+        email : this.email,
+        password : this.password
+      }).then((response)=>
+      {
+        console.log(response);
+        console.log("Done");
+        router.push({name: 'Dashboard'})
+      })
+    }
+  },
   props: {
     source: String,
   },

@@ -11,7 +11,7 @@
                 <v-subheader class="toolbar-title">WeCare+</v-subheader>
               </v-toolbar>
               <v-card-text>
-                <v-form ref="form" v-model="valid" lazy-validation>
+                <v-form ref="form" @submit.prevent="validate" v-model="valid" lazy-validation>
                   <v-container fluid>
                     <v-row>
                       <v-col cols="12" sm="12">
@@ -19,6 +19,7 @@
                           v-model="name"
                           :error-messages="nameErrors"
                           label="Full Name"
+                          name="name"
                           dense
                           required
                           @input="$v.name.$touch()"
@@ -41,6 +42,7 @@
                           v-model="email"
                           :error-messages="emailErrors"
                           label="E-mail"
+                          name="email"
                           dense
                           required
                           @input="$v.email.$touch()"
@@ -53,7 +55,7 @@
                           v-model="password"
                           :type="showPassword ? 'text' : 'password'"
                           :error-messages="passwordErrors"
-                          name="input-10-1"
+                          name="password"
                           label="Password"
                           hint="At least 8 characters"
                           dense
@@ -89,6 +91,7 @@
                           type="number"
                           min="2"
                           label="Age"
+                          name="age"
                           dense
                           required
                         ></v-text-field>
@@ -96,10 +99,11 @@
 
                       <v-col cols="12" sm="6">
                         <v-radio-group
-                          v-model="transition"
+                          v-model="gender"
                           hide-details
                           row
                           dense
+                          name="gender"
                         >
                           <v-radio value="Male" label="Male"></v-radio>
                           <v-radio value="Female" label="Female"></v-radio>
@@ -124,6 +128,7 @@
                           :rules="nameRules"
                           label="Address"
                           dense
+                          name="address"
                         ></v-text-field>
                       </v-col>
 
@@ -148,7 +153,7 @@
                         <v-btn
                           color="secondarydark"
                           class="mr-4"
-                          @click="register"
+                          @click="validate"
                           dark
                         >
                           Sumbit
@@ -185,6 +190,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import router from '../../router'
+
 import { validationMixin } from "vuelidate";
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 
@@ -198,17 +206,18 @@ export default {
     phone: { required },
     checkbox: { required },
   },
-  data() {
-    return {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phone: "",
-      status: null,
-      showPassword: false,
-    };
-  },
+   data: () => ({
+    return :{
+      patient:{
+        name:'',
+        email:'',
+        password:'',
+        gender:'',
+        age:'',
+        address:'',
+      }
+    },
+
   computed: {
     nameErrors() {
       const errors = [];
@@ -255,29 +264,28 @@ export default {
         );
       return errors;
     },
-  },
+  },}),
   methods: {
-    async register() {
-      this.$v.$touch();
-      this.$store
-        .dispatch("register", {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-        })
-        .then(() => {
-          this.$router.push({ name: "Dashboard" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    validate () {
+      axios.post('http://localhost:8000/api/register',{
+      name:this.name,
+      email : this.email,
+      password : this.password,
+      gender : this.gender,
+      age : this.age,
+      address : this.address}).then((response)=>
+      {
+        console.log(response);
+        console.log("Done");
+        router.push({name: 'PatientLogin'})
+      })
     },
     reset() {
       this.$refs.form.reset();
       this.$refs.form.resetValidation();
     },
-  },
-};
+  }
+}
 
 // export default {
 //   name: "Employee ",
