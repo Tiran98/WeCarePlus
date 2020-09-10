@@ -1,17 +1,18 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router';
+import VueRouter from 'vue-router'
 import PatientList from '../views/Patient/PatientList.vue'
 import PatientLogin from '../views/Patient/PatientLogin.vue'
 import PatientReg from '../views/Patient/PatientRegistration.vue'
 import Missing from '../views/Missing.vue'
 import WelcomePage from '../views/WelcomePage.vue'
+import Dashboard from '../views/Dashboard.vue'
 import AddNewPatient from '../views/Patient/AddNewPatient.vue'
 import AddChanneling from '../views/Channeling/AddChanneling.vue'
 import ChannelingList from '../views/Channeling/ChannelingList.vue'
 import TimeSet from '../views/Channeling/TimeSet.vue'
 import UpdateChannel from '../views/Channeling/UpdateChannel.vue'
 import AppointmentReceipt from '../views/Channeling/AppointmentReceipt.vue'
-import Dashboard from '../views/Dashboard.vue'
+import PatientDashboard from '../views/Patient/PatientDashboard.vue'
 
 
 // Employee
@@ -75,13 +76,16 @@ export default new VueRouter({
             name: "Add Channeling",
             component: AddChanneling
         },
-
+        {
+            path: "/PatientDashboard",
+            name: "PatientDashboard",
+            component: PatientDashboard
+        },
         {
             path: "/ChannelingList",
             name: "Channeling List",
             component: ChannelingList
         },
-
         {
             path: "/TimeSet",
             name: "Time Set",
@@ -93,7 +97,17 @@ export default new VueRouter({
             name: "Update Channel",
             component: UpdateChannel
         },
+        {
+            path: "/TimeSet",
+            name: "Time Set",
+            component: TimeSet
+        },
 
+        {
+            path: "/UpdateChannel",
+            name: "Update Channel",
+            component: UpdateChannel
+        },
         {
 
             path: '/EmpEditProfile',
