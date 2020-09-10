@@ -1,26 +1,63 @@
 <template>
+<!-- ajay -->
 
   <v-app id="inspire">
-    <v-main class="EmpAddNew">
+    <v-main class="AddNewDoc">
 
       <div class="container-fluid mt-3">
-        <h3>Add New Employee</h3>
+        <h3>Add New Doctor</h3>
         <hr />
 
               <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-container fluid>
                     <v-row>
-                      <v-col cols="12" sm="12">
+                      <v-col cols="12" sm="6">
                         <v-text-field
-                          v-model="name"
+                          v-model="firstname"
                           :error-messages="nameErrors"
-                          label="Full Name"
+                          label="First Name"
                           dense
                           required
                           @input="$v.name.$touch()"
                           @blur="$v.name.$touch()"
                         ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="lastname"
+                          :error-messages="nameErrors"
+                          label="Last Name"
+                          dense
+                          required
+                          @input="$v.name.$touch()"
+                          @blur="$v.name.$touch()"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="age"
+                          type="number"
+                          min="18"
+                          label="Age"
+                          dense
+                          required
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-radio-group
+                          v-model="Gender"
+                          hide-details
+                          row
+                          dense
+                        >
+                          <v-header> Gender </v-header> 
+                          <v-radio value="Male" label="Male"></v-radio>
+                          <v-radio value="Female" label="Female"></v-radio>
+                        </v-radio-group>
                       </v-col>
 
                       <v-col cols="12" sm="12">
@@ -32,6 +69,60 @@
                           required
                           @input="$v.email.$touch()"
                           @blur="$v.email.$touch()"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="phone"
+                          :error-messages="phoneErrors"
+                          label="Phone"
+                          required
+                          @input="$v.phone.$touch()"
+                          @blur="$v.phone.$touch()"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="address"
+                          :rules="nameRules"
+                          label="Address"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="Specialized"
+                          label="Specialized in"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="Degree"
+                          label="Degree"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="charge"
+                          label="Visiting Charge"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="Username"
+                          :rules="nameRules"
+                          label="Username"
+                          dense
                         ></v-text-field>
                       </v-col>
 
@@ -59,7 +150,7 @@
                           :type="showPassword ? 'text' : 'password'"
                           :error-messages="confirmPasswordErrors"
                           name="input-10-1"
-                          label="Confirm Password"
+                          label="Repeat Password"
                           dense
                           @input="$v.confirmPassword.$touch()"
                           @blur="$v.confirmPassword.$touch()"
@@ -67,50 +158,6 @@
                             showPassword ? 'mdi-eye' : 'mdi-eye-off'
                           "
                           @click:append="showPassword = !showPassword"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="4">
-                        <v-text-field
-                          v-model="age"
-                          type="number"
-                          min="18"
-                          label="Age"
-                          dense
-                          required
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="12">
-                        <v-radio-group
-                          v-model="transition"
-                          hide-details
-                          dense
-                        >
-                          <v-header> Gender </v-header> 
-                          <v-radio value="Male" label="Male"></v-radio>
-                          <v-radio value="Female" label="Female"></v-radio>
-                        </v-radio-group>
-                      </v-col>
-
-                      <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="phone"
-                          :error-messages="phoneErrors"
-                          label="Contact Number"
-                          required
-                          @input="$v.phone.$touch()"
-                          @blur="$v.phone.$touch()"
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="address"
-                          :rules="nameRules"
-                          label="Address"
-                          dense
                         ></v-text-field>
                       </v-col>
 
@@ -122,7 +169,7 @@
                           @click="register"
                           dark
                         >
-                          Save
+                          Register
                         </v-btn>
 
                         <v-btn color="error" class="mr-4" @click="reset">
@@ -134,49 +181,6 @@
 
                   </v-container>
                 </v-form>
-                <v-text-field
-                    v-model="emptype"
-                    label="Contact Number"
-                    required
-                  ></v-text-field>
-
-                <v-text-field
-                  v-model="address"
-                  :counter="50"
-                  :rules="nameRules"
-                  label="Address"
-                  required
-                ></v-text-field>
-
-                <v-text-field
-                    v-model="emptype"
-                    :rules="nameRules"
-                    label="Employee Type"
-                    required
-                  ></v-text-field>
-
-                <v-btn
-                  :disabled="!valid"
-                  color="success"
-                  class="mr-4"
-                  @click="validate"
-                >
-                  Validate
-                </v-btn>
-
-                <v-btn
-                  color="error"
-                  class="mr-4"
-                  @click="reset"
-                >
-                  Reset Form
-                </v-btn>
-
-                <v-btn
-                  color="warning"
-                  @click="resetValidation"
-                >
-                  Reset Validation
               </v-card-text>
       </div>
 
@@ -207,8 +211,14 @@ export default {
   },
   data() {
     return {
-      name: "",
+      firstname: "",
+      lastname:"",
+      age:"",
+      Gender:"",
       email: "",
+      Degree:"",
+      Specialized:"",
+      Username:"",
       password: "",
       confirmPassword: "",
       phone: "",
@@ -284,7 +294,7 @@ export default {
 h3 {
   color: teal;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 30px;
   padding-left: 10px;
 }
 
