@@ -1,10 +1,10 @@
 <template>
 
   <v-app id="inspire">
-    <v-main class="PatientAddNew">
+    <v-main class="AddNewDoc">
 
       <div class="container-fluid mt-3">
-        <h3>Add New Patient</h3>
+        <h3>Edit Doctor Details</h3>
         <hr />
 
               <v-card-text>
@@ -48,7 +48,7 @@
 
                       <v-col cols="12" sm="6">
                         <v-radio-group
-                          v-model="transition"
+                          v-model="Gender"
                           hide-details
                           row
                           dense
@@ -59,17 +59,7 @@
                         </v-radio-group>
                       </v-col>
 
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="nic"
-                          label="NIC"
-                          :error-messages="nicErrors"
-                          required
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
+                      <v-col cols="12" sm="12">
                         <v-text-field
                           v-model="email"
                           :error-messages="emailErrors"
@@ -81,43 +71,14 @@
                         ></v-text-field>
                       </v-col>
 
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="phone"
-                          :error-messages="phoneErrors"
-                          label="Mobile Tel"
-                          @input="$v.phone.$touch()"
-                          @blur="$v.phone.$touch()"
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="phone"
-                          :error-messages="phoneErrors"
-                          label="Home Tel"
-                          required
-                          @input="$v.phone.$touch()"
-                          @blur="$v.phone.$touch()"
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                          <v-overflow-btn
-                            class="my-2"
-                            :items="martial_status"
-                            label="Select Marital Status"
-                            target="#martial-status"
-                          ></v-overflow-btn>
-                      </v-col>
-
                       <v-col cols="12" sm="12">
                         <v-text-field
-                          v-model="occupation"
-                          label="Occupation"
+                          v-model="phone"
+                          :error-messages="phoneErrors"
+                          label="Phone"
                           required
+                          @input="$v.phone.$touch()"
+                          @blur="$v.phone.$touch()"
                           dense
                         ></v-text-field>
                       </v-col>
@@ -128,6 +89,74 @@
                           :rules="nameRules"
                           label="Address"
                           dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="Specialized"
+                          label="Specialized in"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="Degree"
+                          label="Degree"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="charge"
+                          label="Visiting Charge"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="Username"
+                          :rules="nameRules"
+                          label="Username"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="password"
+                          :type="showPassword ? 'text' : 'password'"
+                          :error-messages="passwordErrors"
+                          name="input-10-1"
+                          label="Password"
+                          hint="At least 8 characters"
+                          dense
+                          @input="$v.password.$touch()"
+                          @blur="$v.password.$touch()"
+                          :append-icon="
+                            showPassword ? 'mdi-eye' : 'mdi-eye-off'
+                          "
+                          @click:append="showPassword = !showPassword"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="confirmPassword"
+                          :type="showPassword ? 'text' : 'password'"
+                          :error-messages="confirmPasswordErrors"
+                          name="input-10-1"
+                          label="Repeat Password"
+                          dense
+                          @input="$v.confirmPassword.$touch()"
+                          @blur="$v.confirmPassword.$touch()"
+                          :append-icon="
+                            showPassword ? 'mdi-eye' : 'mdi-eye-off'
+                          "
+                          @click:append="showPassword = !showPassword"
                         ></v-text-field>
                       </v-col>
 
@@ -164,9 +193,9 @@
 <script>
 import Baseline from "../../components/Baseline.vue";
 import { validationMixin } from "vuelidate";
-import { required, minLength, email} from "vuelidate/lib/validators";
+import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 export default {
-  name: "Patient ",
+  name: "Employee ",
   components: {
     Baseline,
   },
@@ -176,15 +205,19 @@ export default {
     name: { required, minLength: minLength(4) },
     email: { required, email },
     password: { required, minLength: minLength(8) },
-    nic: { required, minLength: minLength(10)},
+    confirmPassword: { sameAsPassword: sameAs("password") },
     phone: { required },
   },
   data() {
     return {
-      martial_status: ['Single', 'Married', 'Widowed','Divorced'],
-
-      name: "",
+      firstname: "",
+      lastname:"",
+      age:"",
+      Gender:"",
       email: "",
+      Degree:"",
+      Specialized:"",
+      Username:"",
       password: "",
       confirmPassword: "",
       phone: "",
@@ -208,12 +241,19 @@ export default {
       !this.$v.email.required && errors.push("E-mail is required");
       return errors;
     },
-    nicErrors() {
+    passwordErrors() {
       const errors = [];
-      if (!this.$v.nic.$dirty) return errors;
-      !this.$v.nic.minLength &&
-        errors.push("Valid NIC is required");
-      !this.$v.nic.required && errors.push("NIC is required.");
+      if (!this.$v.password.$dirty) return errors;
+      !this.$v.password.minLength &&
+        errors.push("Password must be at least 8 characters long");
+      !this.$v.password.required && errors.push("Password is required");
+      return errors;
+    },
+    confirmPasswordErrors() {
+      const errors = [];
+      if (!this.$v.confirmPassword.$dirty) return errors;
+      !this.$v.confirmPassword.sameAsPassword &&
+        errors.push("Passwords doesn't match");
       return errors;
     },
     phoneErrors() {
@@ -228,10 +268,12 @@ export default {
       this.$v.$touch();
       this.$store
         .dispatch("register", {
-          nic: this.nic
+          name: this.name,
+          email: this.email,
+          password: this.password,
         })
         .then(() => {
-          this.$router.push({ nic: "Dashboard" });
+          this.$router.push({ name: "Dashboard" });
         })
         .catch((err) => {
           console.log(err);

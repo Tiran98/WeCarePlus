@@ -86,7 +86,7 @@
                   @click="resetValidation"
                 >
                   Reset Validation
-                </v-btn>
+                </v-btn>0
               </v-card-text>
             </v-card>
          
