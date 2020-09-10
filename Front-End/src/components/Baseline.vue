@@ -56,10 +56,6 @@
           </v-btn>
         </template>
         <v-card>
-          <router-link to="/home" class="logout-btn">Profile</router-link>
-          <!-- <a href="../views/Doctor/DoctorProfile.vue" class="logout-btn">Profile</a> -->
-        </v-card>
-        <v-card>
           <router-link to="/home" class="logout-btn">Logout</router-link>
           <!-- <a href="Home/home.vue" class="logout-btn">Logout</a> -->
         </v-card>
@@ -111,12 +107,7 @@ export default {
         {
           action: "mdi-doctor",
           title: "Doctor",
-          items: [
-            { action: "/AddNewDoc", title: "Add New Doctor"},
-            { action: "/EditDoctor", title: "Edit Doctor Details"},
-            { action: "/DoctorList", title: "Doctor List"},
-            { action: "/DoctorProfile", title: "Doctor Profile"}
-            ],
+          items: [{ title: "List Item" }],
         },
         {
           action: "mdi-account-group",

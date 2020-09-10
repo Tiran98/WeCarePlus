@@ -1,264 +1,54 @@
 <template>
-
-  <v-app id="inspire">
-    <v-main class="PatientAddNew">
-
-      <div class="container-fluid mt-3">
-        <h3>Add New Patient</h3>
-        <hr />
-
-              <v-card-text>
-                <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-container fluid>
-                    <v-row>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="firstname"
-                          :error-messages="nameErrors"
-                          label="First Name"
-                          dense
-                          required
-                          @input="$v.name.$touch()"
-                          @blur="$v.name.$touch()"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="lastname"
-                          :error-messages="nameErrors"
-                          label="Last Name"
-                          dense
-                          required
-                          @input="$v.name.$touch()"
-                          @blur="$v.name.$touch()"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="age"
-                          type="number"
-                          min="18"
-                          label="Age"
-                          dense
-                          required
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-radio-group
-                          v-model="transition"
-                          hide-details
-                          row
-                          dense
-                        >
-                          <v-header> Gender </v-header> 
-                          <v-radio value="Male" label="Male"></v-radio>
-                          <v-radio value="Female" label="Female"></v-radio>
-                        </v-radio-group>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="nic"
-                          label="NIC"
-                          :error-messages="nicErrors"
-                          required
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="email"
-                          :error-messages="emailErrors"
-                          label="E-mail"
-                          dense
-                          required
-                          @input="$v.email.$touch()"
-                          @blur="$v.email.$touch()"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="phone"
-                          :error-messages="phoneErrors"
-                          label="Mobile Tel"
-                          @input="$v.phone.$touch()"
-                          @blur="$v.phone.$touch()"
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="phone"
-                          :error-messages="phoneErrors"
-                          label="Home Tel"
-                          required
-                          @input="$v.phone.$touch()"
-                          @blur="$v.phone.$touch()"
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                          <v-overflow-btn
-                            class="my-2"
-                            :items="martial_status"
-                            label="Select Marital Status"
-                            target="#martial-status"
-                          ></v-overflow-btn>
-                      </v-col>
-
-                      <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="occupation"
-                          label="Occupation"
-                          required
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="address"
-                          :rules="nameRules"
-                          label="Address"
-                          dense
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12" sm="12">
-
-                        <v-btn
-                          color="secondarydark"
-                          class="mr-4"
-                          @click="register"
-                          dark
-                        >
-                          Register
-                        </v-btn>
-
-                        <v-btn color="error" class="mr-4" @click="reset">
-                          Clear
-                        </v-btn>
-                      </v-col>
-
-                    </v-row>
-
-                  </v-container>
-                </v-form>
-              </v-card-text>
-      </div>
-
-      <!-- import baseline -->
+  <v-main>
+    <div class="container-fluid mt-3">
+      <h3>Add New Patient</h3>
+      <hr />
       <Baseline />
-    </v-main>
-  </v-app>
-
+    </div>
+  </v-main>
 </template>
 
 <script>
 import Baseline from "../../components/Baseline.vue";
-import { validationMixin } from "vuelidate";
-import { required, minLength, email} from "vuelidate/lib/validators";
+
 export default {
-  name: "Patient ",
+  name: "AddNewPatient",
   components: {
     Baseline,
   },
-
-  mixins: [validationMixin],
-  validations: {
-    name: { required, minLength: minLength(4) },
-    email: { required, email },
-    password: { required, minLength: minLength(8) },
-    nic: { required, minLength: minLength(10)},
-    phone: { required },
-  },
   data() {
     return {
-      martial_status: ['Single', 'Married', 'Widowed','Divorced'],
+      headers: [
+        {
+          text: "Patient ID",
+          align: "start",
+          sortable: false,
+          value: "id",
+        },
+        { text: "Name", value: "type" },
+        { text: "Age", value: "address" },
+        { text: "Gender", value: "email" },
+        { text: "Email", value: "number" },
+        { text: "Mobile", value: "number" },
+        { text: "Action", value: "action" },
 
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phone: "",
-      status: null,
-      showPassword: false,
+        <td>
+          <a href="">Edit</a>
+          <a href="">Delete</a>
+        </td>,
+      ],
     };
-  },
-  computed: {
-    nameErrors() {
-      const errors = [];
-      if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.minLength &&
-        errors.push("Name must be at least 4 characters long.");
-      !this.$v.name.required && errors.push("Name is required.");
-      return errors;
-    },
-    emailErrors() {
-      const errors = [];
-      if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.email && errors.push("Must be valid e-mail");
-      !this.$v.email.required && errors.push("E-mail is required");
-      return errors;
-    },
-    nicErrors() {
-      const errors = [];
-      if (!this.$v.nic.$dirty) return errors;
-      !this.$v.nic.minLength &&
-        errors.push("Valid NIC is required");
-      !this.$v.nic.required && errors.push("NIC is required.");
-      return errors;
-    },
-    phoneErrors() {
-      const errors = [];
-      if (!this.$v.phone.$dirty) return errors;
-      !this.$v.phone.required && errors.push("Contact Number is required");
-      return errors;
-    },
-  },
-  methods: {
-    async register() {
-      this.$v.$touch();
-      this.$store
-        .dispatch("register", {
-          nic: this.nic
-        })
-        .then(() => {
-          this.$router.push({ nic: "Dashboard" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    reset() {
-      this.$refs.form.reset();
-      this.$refs.form.resetValidation();
-    },
   },
 };
 </script>
 
-<style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-
+<style lang="scss" scoped>
 h3 {
   color: teal;
   font-weight: 500;
-  font-size: 30px;
-  padding-left: 10px;
 }
 
-.btn-login {
-  text-decoration: none;
-}
-.toolbar-title {
-  font-family: "Lobster", cursive;
+.search-box {
+  width: 40%;
 }
 </style>

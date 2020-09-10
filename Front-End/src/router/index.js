@@ -2,16 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import Login from '../views/Registration/Login.vue'
+import registation from '../views/Registration/patientRegistration.vue'
 import home from '../views/Home/home.vue'
 import PatientList from '../views/PatientList.vue'
 import Missing from '../views/Missing.vue'
-import AddNewPatient from '../views/Patient/AddNewPatient.vue'
-
-import AddNewDoc from '../views/Doctor/AddNewDoc.vue'
-import DoctorList from '../views/Doctor/DoctorList.vue'
-import DoctorProfile from '../views/Doctor/DoctorProfile.vue'
-import EditDoctor from '../views/Doctor/EditDoctor.vue'
-import DocLogin from '../views/Doctor/DocLogin.vue'
+import AddNewPatient from '../views/AddNewPatient.vue'
 
 import EmpList from '../views/Employee/EmpList.vue'
 import EmpSignIn from '../views/Employee/EmpSignIn.vue'
@@ -50,9 +45,9 @@ export default new VueRouter({
       component: Missing
     },
     {
-      path: "/AddNewPatient",
-      name: "AddNewPatient",
-      component: AddNewPatient
+      path: "/register",
+      name: "register",
+      component: registation
     },
     {
       path: "/login",
@@ -82,40 +77,6 @@ export default new VueRouter({
       path: '/EmpEditProfile',
       name: 'EmpEditProfile',
       component: EmpEditProfile
-    },
-
-    //Doctor
-
-    {
-      path: '/AddNewDoc',
-      name: 'AddNewDoc',
-      component: AddNewDoc
-    },
-
-    {
-      path: '/DoctorList',
-      name: 'DoctorList',
-      component: DoctorList
-    },
-
-    {
-      path: '/DoctorProfile',
-      name: 'DoctorProfile',
-      component: DoctorProfile
-    },
-
-    {
-      path: '/EditDoctor',
-      name: 'EditDoctor',
-      component: EditDoctor
-    },
-
-    {
-      path: '/DocLogin',
-      name: 'DocLogin',
-      component: DocLogin
     }
-
-    
   ]
 });
