@@ -36,8 +36,6 @@
       </v-list>
     </v-navigation-drawer>
 
-   
-
     <v-app-bar app color="primary" dark>
       <v-toolbar-title class="toolbar-title">WeCare+</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -45,8 +43,8 @@
         <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
       </v-avatar>
       <div class="mr-2">
-        <span>Susitha Senarathne</span><br />
-        <small class="user-type">Doctor</small>
+        <span>Dananjaya Sandakalum</span><br />
+        <small class="user-type">Patient</small>
       </div>
 
       <v-menu offset-y>
@@ -57,7 +55,6 @@
         </template>
         <v-card>
           <router-link to="/" class="logout-btn">Logout</router-link>
-          <!-- <a href="Home/home.vue" class="logout-btn">Logout</a> -->
         </v-card>
       </v-menu>
     </v-app-bar>
@@ -71,13 +68,9 @@
 </template>
 
 <script>
-
-
 export default {
   name: "Baseline",
-  components: {
-    
-  },
+  components: {},
   data() {
     return {
       drawer: true,
@@ -85,14 +78,6 @@ export default {
         {
           action: "mdi-view-dashboard",
           title: "Dashboard",
-        },
-        {
-          action: "mdi-bed",
-          title: "Patient",
-          items: [
-            { action: "/patientList", title: "Patient List" },
-            { action: "/addNewPatient", title: "Add New Patient" },
-          ],
         },
         {
           action: "mdi-bookmark-plus",
@@ -105,38 +90,12 @@ export default {
           items: [{ title: "List Item" }],
         },
         {
-          action: "mdi-doctor",
-          title: "Doctor",
-          items: [{ title: "List Item" }],
-        },
-        {
-          action: "mdi-account-group",
-          title: "Employee",
-          items: [
-            { action: "/EmpList", title: "Employee List" },
-            { action: "/EmpAddNew", title: "Add New Employee" },
-            
-          ],
-        },
-        {
-          action: "mdi-truck-check",
-          title: "Supplier",
-          items: [{ title: "List Item" }],
-        },
-        {
-          action: "mdi-server",
-          title: "Inventory",
-          items: [{ title: "List Item" }],
+          action: "mdi-account",
+          title: "User Profile",
         },
         {
           action: "mdi-message",
           title: "Messages",
-          items: [{ title: "List Item" }],
-        },
-        {
-          action: "mdi-cash-multiple",
-          title: "Finance",
-          items: [{ title: "List Item" }],
         },
       ],
     };

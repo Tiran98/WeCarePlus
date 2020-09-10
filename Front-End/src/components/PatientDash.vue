@@ -14,18 +14,12 @@
             >
               <v-icon right dark class="mr-3">mdi-calendar-range</v-icon>
               Appointments
-              <v-icon right dark class="ml-3 mr-1"
-                >mdi-numeric-3-circle-outline</v-icon
-              >
             </v-btn>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
             <v-btn x-large block depressed dark color="#1f00ab">
               <v-icon right dark class="mr-3">mdi-calendar-range</v-icon>
               Messages
-              <v-icon right dark class="ml-3"
-                >mdi-numeric-2-circle-outline</v-icon
-              >
             </v-btn>
           </div>
           <div class="col-lg-2 col-md-6 col-xs-12">
@@ -39,27 +33,21 @@
       <div class="container-fluid">
         <div class="row mt-2 mx-3">
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <v-btn x-large block depressed color="#fff896">
-              <v-icon right dark class="mr-3">mdi-bed</v-icon>
-              Patients
-            </v-btn>
-          </div>
-          <div class="col-lg-3 col-md-6 col-xs-12">
             <v-btn x-large block depressed color="#9ef4ff">
-              <v-icon right dark class="mr-3">mdi-doctor</v-icon>
-              Doctors
+              <v-icon right dark class="mr-3">mdi-account</v-icon>
+              User Profile
             </v-btn>
           </div>
-          <div class="col-lg-3 col-md-6 col-xs-12">
+          <div class="col-lg-6 col-md-6 col-xs-12">
             <v-btn x-large block depressed color="#ff7578">
-              <v-icon right dark class="mr-3">mdi-account-group</v-icon>
-              Employees
+              <v-icon right dark class="mr-3">mdi-format-page-break</v-icon>
+              Prescriptions
             </v-btn>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
             <v-btn x-large block depressed color="#d773ff">
-              <v-icon right dark class="mr-3">mdi-truck-check</v-icon>
-              Suppliers
+              <v-icon right dark class="mr-3">mdi-doctor</v-icon>
+              Doctors
             </v-btn>
           </div>
         </div>
@@ -76,7 +64,7 @@ import DigitalClock from "../components/Clock";
 import Calender from "../components/Calender.vue";
 
 export default {
-  name: "MainDash",
+  name: "PatientDash",
   components: {
     DigitalClock,
     Calender,
