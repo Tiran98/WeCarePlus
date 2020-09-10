@@ -27,14 +27,20 @@
                     type="password"
                   ></v-text-field>
                 </v-form>
-                <v-btn block color="primary">Login</v-btn>
+                <v-btn block to="/PatientDashboard" color="primary"
+                  >Login</v-btn
+                >
               </v-card-text>
-              <v-card-actions>
-                <router-link to="/Patientreg">
-                  <v-btn block color="secondarydark" class="btn-login" dark>
-                    <span>Sign Up</span>
-                  </v-btn>
-                </router-link>
+              <v-card-actions class="px-4">
+                <v-btn
+                  block
+                  color="secondarydark"
+                  to="/Patientreg"
+                  class="btn-login"
+                  dark
+                >
+                  <span>Sign Up</span>
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
