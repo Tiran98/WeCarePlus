@@ -82,7 +82,10 @@ export default {
         {
           action: "mdi-bookmark-plus",
           title: "Appoinments",
-          items: [{ title: "List Item" }],
+          items: [
+            { action: "/AddChanneling", title: "New Appointment" },
+            { action: "/ChannelingList", title: "Appointment List" },
+          ],
         },
         {
           action: "mdi-format-page-break",
