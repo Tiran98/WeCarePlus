@@ -13,6 +13,7 @@ use Tymon\JWTAuth\Facades\JWTFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Tymon\JWTAuth\Contracts\Providers\Auth as ProvidersAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\JWTManager as JWT;
 
@@ -30,30 +31,65 @@ class RegisterController extends Controller
         $patient->address = $request->input('address');
         $patient->save();
 
-        Auth::Login($patient);
-        
-        return response()-> json(['message'=> $patient],200);
+        // Auth::Login($patient);
+      
+        $token = JWTAuth::fromUser($patient);
 
+        // return response()-> json(['message'=> $patient],200);
+
+        return response()-> json(compact('patient','token'),200);
     
     }
 
     public function Login(Request $request){
+
+        $details = $request->json()->all();
+
+        try{
+
+        if(! $token = JWTAuth::attempt($details))
+        {
+            return response()->json(['error' => 'details_not_valid'],400);
+        }
+    }catch(JWTException $e)
+    {
+        return response()->json(['error' => 'details_not_jwt'],500);
+    }
+        
+            return response()->json( compact('token') );
+        }
 
         // $this->validate($request, [
         //     'email' => 'bail|required|email',
         //     'password' => 'bail|required|min:6',
         // ]);
 
-        $user = array('email' => Input::$request('email'),'password' => Input::$request('password'));
-        echo $user;
+        // $user = array('email' => Input::$request('email'),'password' => Input::$request('password'));
+        // echo $user;
 
-        if(Auth::attempt($user))
+        // if(Auth::attempt($user))
+        // {
+        //     return response() ->json(Auth::user(),200);
+        // }
+        // else{
+        //     return response() ->json(['error'=> 'Could not log you in.'], 401);
+        // }
+
+        public function getAuthenticatedUser()
         {
-            return response() ->json(Auth::user(),200);
+            try{
+            if(! $patient = JWTAuth::parseToken()->authenticate())
+            {
+                return response()->json(['patient_not_found'],400);
+            }
+        }catch(Tymon\JWTAuth\Exceptions\TokenExpiredException $e)
+        {
+            return response()->json(['token_expired'],$e-> getStatusCode());
         }
-        else{
-            return response() ->json(['error'=> 'Could not log you in.'], 401);
+
+            return response()->json( compact('patient') );           
         }
+
+
     }
 
-}

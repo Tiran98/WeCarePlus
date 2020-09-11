@@ -8,7 +8,7 @@
         <hr />
 
               <v-card-text>
-                <v-form ref="form" v-model="valid" lazy-validation>
+                <v-form ref="form" @submit.prevent="Empvalidate" v-model="valid" lazy-validation>
                   <v-container fluid>
                     <v-row>
                       <v-col cols="12" sm="12">
@@ -82,6 +82,18 @@
                       </v-col>
 
                       <v-col cols="12" sm="12">
+                        <v-radio-group
+                          v-model="gender"
+                          hide-details
+                          dense
+                        >
+                          <v-header> Gender </v-header> 
+                          <v-radio value="Male" label="Male"></v-radio>
+                          <v-radio value="Female" label="Female"></v-radio>
+                        </v-radio-group>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
                         <v-text-field
                           v-model="phone"
                           :error-messages="phoneErrors"
@@ -121,7 +133,7 @@
                         <v-btn
                           color="secondarydark"
                           class="mr-4"
-                          @click="register"
+                          @click="Empvalidate"
                           dark
                         >
                           Save
@@ -147,6 +159,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import router from '../../router'
+
 import Baseline from "../../components/Baseline.vue";
 import { validationMixin } from "vuelidate";
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
@@ -166,6 +181,7 @@ export default {
     confirmPassword: { sameAsPassword: sameAs("password") },
     phone: { required },
   },
+
   data() {
     return {
       name: "",
@@ -180,6 +196,7 @@ export default {
 
     };
   },
+
   computed: {
     nameErrors() {
       const errors = [];
@@ -225,23 +242,23 @@ export default {
       !this.$v.address.required && errors.push("Address is required.");
       return errors;
     },
-  },
+  }, 
   // Save & Clear buttons 
   methods: {
-    async register() {
-      this.$v.$touch();
-      this.$store
-        .dispatch("register", {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-        })
-        .then(() => {
-          this.$router.push({ name: "Dashboard" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+     Empvalidate () {
+      axios.post('http://localhost:8000/api/addEmp',{
+      name:this.name,
+      email : this.email,
+      password : this.password,
+      gender : this.gender,
+      phone : this.phone,
+      age : this.age,
+      address : this.address}).then((response)=>
+      {
+        console.log(response);
+        console.log("Done");
+        router.push({name: 'EmpList'})
+      })
     },
     reset() {
       this.$refs.form.reset();

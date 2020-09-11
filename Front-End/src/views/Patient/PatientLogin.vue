@@ -57,8 +57,9 @@
 </template>
 
 <script>
-import axios from "axios";
-import router from "../../router";
+import axios from 'axios'
+import router from '../../router'
+// import jwt_decode from "jwt-decode";
 
 export default {
   data: () => ({
@@ -69,19 +70,22 @@ export default {
       },
     },
   }),
-  methods: {
-    Login() {
-      axios
-        .post("http://localhost:8000/api/login", {
-          email: this.email,
-          password: this.password,
-        })
-        .then((response) => {
-          console.log(response);
-          console.log("Done");
-          router.push({ name: "Dashboard" });
-        });
-    },
+
+  methods:{
+    Login(){
+      // localStorage.setItem('usertoken');
+      axios.post('http://localhost:8000/api/login',{
+        email : this.email,
+        password : this.password
+      }).then((response)=>
+      {
+        localStorage.setItem('usertoken',response.data);
+        console.log(response);
+        console.log("Done");
+        router.push({name: 'Dashboard'})
+      })
+    }
+
   },
   props: {
     source: String,
