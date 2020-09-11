@@ -21,6 +21,13 @@ import EmpSignIn from '../views/Employee/EmpSignIn.vue'
 import EmpAddNew from '../views/Employee/EmpAddNew.vue'
 import EmpEditProfile from '../views/Employee/EmpEditProfile.vue'
 
+
+// Doctor
+import AddNewDoc from '../views/Doctor/AddNewDoc.vue'
+import DoctorList from '../views/Doctor/DoctorList.vue'
+import DoctorProfile from '../views/Doctor/DoctorProfile.vue'
+import EditDoctor from '../views/Doctor/EditDoctor.vue'
+
 Vue.use(VueRouter)
 import EmpProfile from '../views/Employee/EmpProfile.vue'
 
@@ -139,6 +146,32 @@ export default new VueRouter({
             path: '/EmpProfile',
             name: 'EmpProfile',
             component: EmpProfile
+        },
+
+        // Doctor
+
+        {
+            path: '/AddNewDoc',
+            name: 'AddNewDoc',
+            component: AddNewDoc
+        },
+
+        {
+            path: '/EditDoctor',
+            name: 'EditDoctor',
+            component: EditDoctor
+        },
+
+        {
+            path: '/DoctorList',
+            name: 'DoctorList',
+            component: DoctorList
+        },
+        
+        {
+            path: '/DoctorProfile',
+            name: 'DoctorProfile',
+            component: DoctorProfile
         }
 
     ]
