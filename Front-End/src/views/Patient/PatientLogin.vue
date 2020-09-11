@@ -28,8 +28,13 @@
                     prepend-icon="mdi-lock"
                     type="password"
                   ></v-text-field>
-                  <v-btn color="primary" @click="Login"
-                  >Login</v-btn>
+                  <v-btn
+                    color="primary"
+                    @click="Login"
+                    to="/PatientDashboard"
+                    block
+                    >Login</v-btn
+                  >
                 </v-form>
               </v-card-text>
               <v-card-actions class="px-4">
@@ -57,14 +62,15 @@ import router from '../../router'
 // import jwt_decode from "jwt-decode";
 
 export default {
-  data:() => ({
-    return :{
-      patient:{
-        email:'',
-        password:''
-      }
-    } 
+  data: () => ({
+    return: {
+      patient: {
+        email: "",
+        password: "",
+      },
+    },
   }),
+
   methods:{
     Login(){
       // localStorage.setItem('usertoken');
@@ -79,6 +85,7 @@ export default {
         router.push({name: 'Dashboard'})
       })
     }
+
   },
   props: {
     source: String,
