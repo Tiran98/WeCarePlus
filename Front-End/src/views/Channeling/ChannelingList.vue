@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid mt-3">
     <v-main>
-      <h3>Employee List</h3>
+      <h3>Add New Appointment</h3>
       <hr />
       <v-data-table
         :headers="headers"
-        :items="EmployeeList"
-        sort-by="EmployeeID"
+        :items="Appointment"
+        sort-by="patientNo"
         class="elevation-1"
       >
         <template v-slot:top>
@@ -18,51 +18,50 @@
                   <v-text-field
                     v-model="search"
                     append-icon="mdi-magnify"
-                    label="Search the Name"
+                    label="Search the date"
                     single-line
                     hide-details
                   ></v-text-field>
                 </div>
               </template>
-
               <v-card>
                 <v-card-text>
                   <v-container>
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.employeeID"
-                          label="Employee ID"
+                          v-model="editedItem.patientName"
+                          label="Patient Name"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.name"
-                          label="Employee Name"
+                          v-model="editedItem.patientNo"
+                          label="Patient No"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.emptype"
-                          label="Type"
+                          v-model="editedItem.appDate"
+                          label="App.Date"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.address"
-                          label="Address"
+                          v-model="editedItem.time"
+                          label="Time"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.email"
-                          label="Email"
+                          v-model="editedItem.doctor"
+                          label="Doctor"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.phone"
-                          label="Number"
+                          v-model="editedItem.service"
+                          label="Service"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -76,13 +75,10 @@
                   >
                   <v-btn color="blue darken-1" text @click="save">Save</v-btn>
                 </v-card-actions>
-
               </v-card>
             </v-dialog>
           </v-toolbar>
         </template>
-
-        <!-- Action Buttons -->
         <template v-slot:[`item.actions`]="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">
             mdi-pencil
@@ -91,56 +87,52 @@
             mdi-delete
           </v-icon>
         </template>
-
-        <!-- Baseline Import -->
       </v-data-table>
-      <Baseline />
+      <BaselinePat />
     </v-main>
   </div>
 </template>
 
 <script>
-// Baseline Import
-import Baseline from "../../components/Baseline.vue";
+import BaselinePat from "../../components/BaselinePat.vue";
 
 export default {
-  name: "EmployeeList",
+  name: "AddChanneling",
   components: {
-    Baseline,
+    BaselinePat,
   },
   data: () => ({
     dialog: false,
     headers: [
       {
-        text: "Employee ID",
+        text: "Patient ID",
         align: "start",
         sortable: false,
-        value: "employeeID",
+        value: "patientNo",
       },
-      { text: "Employee Name",
-        value: "name" 
+
+      { text: "Patient Name", value: "name" },
+
+      { text: "App.Date", value: "appDate" },
+
+      {
+        text: "Time",
+        align: "start",
+        sortable: false,
+        value: "time",
       },
-      { text: "Type",
-        sortable: false, 
-        value: "emptype" 
+
+      {
+        text: "Doctor",
+        align: "start",
+        sortable: false,
+        value: "Doctor",
       },
       {
-        text: "Address",
+        text: "Service",
         align: "start",
         sortable: false,
-        value: "address",
-      },
-      {
-        text: "Email",
-        align: "start",
-        sortable: false,
-        value: "email",
-      },
-      {
-        text: "Number",
-        align: "start",
-        sortable: false,
-        value: "phone",
+        value: "Service",
       },
       {
         text: "Actions",
@@ -148,23 +140,23 @@ export default {
         sortable: false,
       },
     ],
-    EmployeeList: [],
+    Appointment: [],
     editedIndex: -1,
     editedItem: {
-      employeeID:"",
       name: "",
-      emptype: "",
-      address: "",
-      email: "",
-      phone: "",     
+      patientNo: 0,
+      appDate: 0,
+      time: 0,
+      Doctor: "",
+      Service: "",
     },
     defaultItem: {
-      employeeID:"",
       name: "",
-      emptype: "",
-      address: "",
-      email: "",
-      phone: "",
+      patientNo: 0,
+      appDate: 0,
+      time: 0,
+      Doctor: "",
+      Service: "",
     },
   }),
   computed: {
@@ -183,34 +175,26 @@ export default {
   methods: {
     //Default First Item
     initialize() {
-      this.EmployeeList = [
+      this.Appointment = [
         {
-          employeeID:"1",
-          name: "Rikas",
-          emptype: "Lab",
-          address: "Colombo",
-          email: "Rikas@gmail.com",
-          phone: "070",
-        },
-        {
-          employeeID:"2",
-          name: "Sanda",
-          emptype: "Pharmacist",
-          address: "Colombo",
-          email: "Sanda@gmail.com",
-          phone: "076",
+          patientNo: 0,
+          name: "Udari Heshani",
+          appDate: "10/09/2020",
+          time: 0,
+          Doctor: "Susitha Senarathne",
+          Service: "OPD",
         },
       ];
     },
     editItem(item) {
-      this.editedIndex = this.EmployeeList.indexOf(item);
+      this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
     deleteItem(item) {
-      const index = this.EmployeeList.indexOf(item);
+      const index = this.desserts.indexOf(item);
       confirm("Are you sure you want to delete this item?") &&
-        this.EmployeeList.splice(index, 1);
+        this.desserts.splice(index, 1);
     },
     close() {
       this.dialog = false;
@@ -221,9 +205,9 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.EmployeeList[this.editedIndex], this.editedItem);
+        Object.assign(this.desserts[this.editedIndex], this.editedItem);
       } else {
-        this.EmployeeList.push(this.editedItem);
+        this.desserts.push(this.editedItem);
       }
       this.close();
     },
@@ -235,7 +219,5 @@ export default {
 h3 {
   color: teal;
   font-weight: 500;
-  font-size: 40px;
-  padding-left: 10px;
 }
 </style>

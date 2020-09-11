@@ -1,26 +1,63 @@
 <template>
+<!-- ajay -->
 
   <v-app id="inspire">
-    <v-main class="EmpAddNew">
+    <v-main class="AddNewDoc">
 
       <div class="container-fluid mt-3">
-        <h3>Add New Employee</h3>
+        <h3>Add New Doctor</h3>
         <hr />
 
               <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-container fluid>
                     <v-row>
-                      <v-col cols="12" sm="12">
+                      <v-col cols="12" sm="6">
                         <v-text-field
-                          v-model="name"
+                          v-model="firstname"
                           :error-messages="nameErrors"
-                          label="Full Name"
+                          label="First Name"
                           dense
                           required
                           @input="$v.name.$touch()"
                           @blur="$v.name.$touch()"
                         ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="lastname"
+                          :error-messages="nameErrors"
+                          label="Last Name"
+                          dense
+                          required
+                          @input="$v.name.$touch()"
+                          @blur="$v.name.$touch()"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="age"
+                          type="number"
+                          min="18"
+                          label="Age"
+                          dense
+                          required
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-radio-group
+                          v-model="Gender"
+                          hide-details
+                          row
+                          dense
+                        >
+                          <v-header> Gender </v-header> 
+                          <v-radio value="Male" label="Male"></v-radio>
+                          <v-radio value="Female" label="Female"></v-radio>
+                        </v-radio-group>
                       </v-col>
 
                       <v-col cols="12" sm="12">
@@ -32,6 +69,60 @@
                           required
                           @input="$v.email.$touch()"
                           @blur="$v.email.$touch()"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="phone"
+                          :error-messages="phoneErrors"
+                          label="Phone"
+                          required
+                          @input="$v.phone.$touch()"
+                          @blur="$v.phone.$touch()"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="address"
+                          :rules="nameRules"
+                          label="Address"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="Specialized"
+                          label="Specialized in"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="Degree"
+                          label="Degree"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="charge"
+                          label="Visiting Charge"
+                          dense
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="12">
+                        <v-text-field
+                          v-model="Username"
+                          :rules="nameRules"
+                          label="Username"
+                          dense
                         ></v-text-field>
                       </v-col>
 
@@ -59,7 +150,7 @@
                           :type="showPassword ? 'text' : 'password'"
                           :error-messages="confirmPasswordErrors"
                           name="input-10-1"
-                          label="Confirm Password"
+                          label="Repeat Password"
                           dense
                           @input="$v.confirmPassword.$touch()"
                           @blur="$v.confirmPassword.$touch()"
@@ -70,61 +161,15 @@
                         ></v-text-field>
                       </v-col>
 
-                      <v-col cols="12" sm="4">
-                        <v-text-field
-                          v-model="age"
-                          type="number"
-                          min="18"
-                          label="Age"
-                          dense
-                          required
-                        ></v-text-field>
-                      </v-col>
-
                       <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="phone"
-                          :error-messages="phoneErrors"
-                          label="Contact Number"
-                          required
-                          @input="$v.phone.$touch()"
-                          @blur="$v.phone.$touch()"
-                          dense
-                        ></v-text-field>
-                      </v-col>
 
-                      <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="address"
-                          :rules="nameRules"
-                          :error-messages="addressErrors"
-                          label="Address"
-                          @input="$v.address.$touch()"
-                          @blur="$v.address.$touch()"
-                          dense
-                          required
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col class="d-flex" cols="12" sm="6">
-                        <v-select
-                         v-model="emptype"
-                         :items="emptype"
-                         label="Employee Type"
-                         dense
-                         outlined
-                        ></v-select>
-                      </v-col>
-
-                      <!-- Save & Clear buttons -->
-                      <v-col cols="12" sm="12">
                         <v-btn
                           color="secondarydark"
                           class="mr-4"
                           @click="register"
                           dark
                         >
-                          Save
+                          Register
                         </v-btn>
 
                         <v-btn color="error" class="mr-4" @click="reset">
@@ -150,9 +195,8 @@
 import Baseline from "../../components/Baseline.vue";
 import { validationMixin } from "vuelidate";
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
-
 export default {
-  name: "Employee",
+  name: "Employee ",
   components: {
     Baseline,
   },
@@ -162,22 +206,24 @@ export default {
     name: { required, minLength: minLength(4) },
     email: { required, email },
     password: { required, minLength: minLength(8) },
-    address: {required, minLength: minLength(5)},
     confirmPassword: { sameAsPassword: sameAs("password") },
     phone: { required },
   },
   data() {
     return {
-      name: "",
+      firstname: "",
+      lastname:"",
+      age:"",
+      Gender:"",
       email: "",
+      Degree:"",
+      Specialized:"",
+      Username:"",
       password: "",
       confirmPassword: "",
       phone: "",
-      address:"",
-      emptype: ['Laboratory Assistant','Nurse','Pharmacist','Other Hospital Staff'],
       status: null,
       showPassword: false,
-
     };
   },
   computed: {
@@ -217,16 +263,7 @@ export default {
       !this.$v.phone.required && errors.push("Contact Number is required");
       return errors;
     },
-    addressErrors() {
-      const errors = [];
-      if (!this.$v.address.$dirty) return errors;
-      !this.$v.address.minLength &&
-        errors.push("Address must be at least 5 characters long.");
-      !this.$v.address.required && errors.push("Address is required.");
-      return errors;
-    },
   },
-  // Save & Clear buttons 
   methods: {
     async register() {
       this.$v.$touch();
@@ -257,7 +294,7 @@ export default {
 h3 {
   color: teal;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 30px;
   padding-left: 10px;
 }
 

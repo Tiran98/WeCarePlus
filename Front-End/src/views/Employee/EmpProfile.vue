@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
-=======
 <template>
     <div>
-        
 <!-- import baseline -->
 <Baseline />
     </div>
@@ -23,4 +20,3 @@ export default {
 <style lang="scss" scoped>
 
 </style>
->>>>>>> Stashed changes
