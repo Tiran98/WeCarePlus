@@ -28,8 +28,13 @@
                     prepend-icon="mdi-lock"
                     type="password"
                   ></v-text-field>
-                  <v-btn color="primary" @click="Login"
-                  >Login</v-btn>
+                  <v-btn
+                    color="primary"
+                    @click="Login"
+                    to="/PatientDashboard"
+                    block
+                    >Login</v-btn
+                  >
                 </v-form>
               </v-card-text>
               <v-card-actions class="px-4">
@@ -52,30 +57,31 @@
 </template>
 
 <script>
-import axios from 'axios'
-import router from '../../router'
+import axios from "axios";
+import router from "../../router";
 
 export default {
-  data:() => ({
-    return :{
-      patient:{
-        email:'',
-        password:''
-      }
-    } 
+  data: () => ({
+    return: {
+      patient: {
+        email: "",
+        password: "",
+      },
+    },
   }),
-  methods:{
-    Login(){
-      axios.post('http://localhost:8000/api/login',{
-        email : this.email,
-        password : this.password
-      }).then((response)=>
-      {
-        console.log(response);
-        console.log("Done");
-        router.push({name: 'Dashboard'})
-      })
-    }
+  methods: {
+    Login() {
+      axios
+        .post("http://localhost:8000/api/login", {
+          email: this.email,
+          password: this.password,
+        })
+        .then((response) => {
+          console.log(response);
+          console.log("Done");
+          router.push({ name: "Dashboard" });
+        });
+    },
   },
   props: {
     source: String,
