@@ -9,6 +9,7 @@
               block
               depressed
               dark
+              to="/ChannelingList"
               color="#eb4034"
               class="px-5 white--text"
             >
@@ -17,7 +18,7 @@
             </v-btn>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12">
-            <v-btn x-large block depressed dark color="#1f00ab">
+            <v-btn x-large block depressed dark color="#1f00ab" to="/">
               <v-icon right dark class="mr-3">mdi-calendar-range</v-icon>
               Messages
             </v-btn>
@@ -73,6 +74,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  text-decoration: none;
+}
+
 .v-main {
   max-height: 80vh;
 }
