@@ -135,7 +135,10 @@ export default {
         {
           action: "mdi-server",
           title: "Inventory",
-          items: [{ title: "List Item" }],
+          items: [
+            { action: "/inventoryList", title: "Inventory List" },
+            { action: "/addNewItem", title: "Add New Item" },
+          ],
         },
         {
           action: "mdi-message",

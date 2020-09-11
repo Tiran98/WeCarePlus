@@ -1,13 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import Dashboard from '../views/Dashboard.vue'
+
 import PatientList from '../views/Patient/PatientList.vue'
-import PatientLogin from '../views/Patient/PatientLogin.vue'
+import Patientlogin from '../views/Patient/PatientLogin.vue'
 import PatientReg from '../views/Patient/PatientRegistration.vue'
+
 import Missing from '../views/Missing.vue'
 
 import AddNewPatient from '../views/AddNewPatient.vue'
+
 import WelcomePage from '../views/WelcomePage.vue'
-import Dashboard from '../views/Dashboard.vue'
+
 import AddChanneling from '../views/Channeling/AddChanneling.vue'
 import ChannelingList from '../views/Channeling/ChannelingList.vue'
 import TimeSet from '../views/Channeling/TimeSet.vue'
@@ -21,6 +26,9 @@ import EmpList from '../views/Employee/EmpList.vue'
 import EmpSignIn from '../views/Employee/EmpSignIn.vue'
 import EmpAddNew from '../views/Employee/EmpAddNew.vue'
 import EmpEditProfile from '../views/Employee/EmpEditProfile.vue'
+import AddNewItem from '../views/Inventory/AddNewItem.vue'
+import InventoryList from '../views/Inventory/InventoryList.vue'
+
 
 
 // Doctor
@@ -63,6 +71,16 @@ export default new VueRouter({
       path: '/addNewPatient',
       name: 'Add New Patient',
       component: AddNewPatient
+    },
+    {
+     path: '/addNewItem',
+     name: 'Add New Item',
+     component: AddNewItem
+    },
+    {
+      path: '/inventoryList',
+      name: 'Inventory List',
+      component: InventoryList
     },
     {
       path: '/about',
@@ -122,11 +140,6 @@ export default new VueRouter({
       component: EmpEditProfile
     },
     {
-      path: '/EmpList',
-      name: 'EmpList',
-      component: EmpList
-    },
-    {
       path: '/EmpSignIn',
       name: 'EmpSignIn',
       component: EmpSignIn
@@ -136,8 +149,7 @@ export default new VueRouter({
       name: 'EmpAddNew',
       component: EmpAddNew
     },
-    //Finance
-    {
+  {
       path: '/AddIncome',
       name: 'AddIncome',
       component: AddIncome
