@@ -56,7 +56,7 @@
           </v-btn>
         </template>
         <v-card>
-          <router-link to="/home" class="logout-btn">Logout</router-link>
+          <router-link to="/" class="logout-btn">Logout</router-link>
           <!-- <a href="Home/home.vue" class="logout-btn">Logout</a> -->
         </v-card>
       </v-menu>
@@ -126,7 +126,10 @@ export default {
         {
           action: "mdi-server",
           title: "Inventory",
-          items: [{ title: "List Item" }],
+          items: [
+            { action: "/inventoryList", title: "Inventory List" },
+            { action: "/addNewItem", title: "Add New Item" },
+          ],
         },
         {
           action: "mdi-message",

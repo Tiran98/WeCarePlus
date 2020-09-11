@@ -1,17 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
-import Login from '../views/Registration/Login.vue'
-import registation from '../views/Registration/patientRegistration.vue'
 import home from '../views/Home/home.vue'
-import PatientList from '../views/PatientList.vue'
+import PatientList from '../views/Patient/PatientList.vue'
+import Patientlogin from '../views/Patient/PatientLogin.vue'
+import PatientReg from '../views/Patient/PatientRegistration.vue'
+// import Login from '../views/Registration/Login.vue'
+// import registation from '@/views/Registration/patientRegistration.vue'
 import Missing from '../views/Missing.vue'
 import AddNewPatient from '../views/AddNewPatient.vue'
-
-import EmpList from '../views/Employee/EmpList.vue'
+import WelcomePage from '../views/WelcomePage.vue'
+// import EmpList from '../views/Employee/EmpList.vue'
 import EmpSignIn from '../views/Employee/EmpSignIn.vue'
 import EmpAddNew from '../views/Employee/EmpAddNew.vue'
 import EmpEditProfile from '../views/Employee/EmpEditProfile.vue'
+import AddNewItem from '../views/Inventory/AddNewItem.vue'
+import InventoryList from '../views/Inventory/InventoryList.vue'
+
 
 Vue.use(VueRouter)
 
@@ -19,6 +24,11 @@ export default new VueRouter({
   mode: 'history',
   routes: [{
       path: '/',
+      name: 'Welcome Page',
+      component: WelcomePage
+    },
+    {
+      path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
     },
@@ -33,6 +43,16 @@ export default new VueRouter({
       component: AddNewPatient
     },
     {
+     path: '/addNewItem',
+     name: 'Add New Item',
+     component: AddNewItem
+    },
+    {
+      path: '/inventoryList',
+      name: 'Inventory List',
+      component: InventoryList
+    },
+    {
       path: '/about',
       name: 'About',
       // route level code-splitting
@@ -45,23 +65,18 @@ export default new VueRouter({
       component: Missing
     },
     {
-      path: "/register",
-      name: "register",
-      component: registation
+      path: "/Patientreg",
+      name: "Patientreg",
+      component: PatientReg
     },
     {
-      path: "/login",
-      name: "login",
-      component: Login
+      path: "/Patientlogin",
+      name: "Patientlogin",
+      component: Patientlogin
     },
     {
       path: "/home",
       component: home
-    },
-    {
-      path: '/EmpList',
-      name: 'EmpList',
-      component: EmpList
     },
     {
       path: '/EmpSignIn',
@@ -79,4 +94,5 @@ export default new VueRouter({
       component: EmpEditProfile
     }
   ]
+
 });
