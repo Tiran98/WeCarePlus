@@ -37,7 +37,6 @@ import DoctorList from '../views/Doctor/DoctorList.vue'
 import DoctorProfile from '../views/Doctor/DoctorProfile.vue'
 import EditDoctor from '../views/Doctor/EditDoctor.vue'
 
-Vue.use(VueRouter)
 import EmpProfile from '../views/Employee/EmpProfile.vue'
 
 Vue.use(VueRouter);
@@ -63,6 +62,11 @@ export default new VueRouter({
       component: Dashboard
     },
     {
+      path: '/PatientDashboard',
+      name: 'PatientDashboard',
+      component: PatientDashboard
+    },
+    {
       path: '/patientList',
       name: 'Patient List',
       component: PatientList
@@ -73,9 +77,9 @@ export default new VueRouter({
       component: AddNewPatient
     },
     {
-     path: '/addNewItem',
-     name: 'Add New Item',
-     component: AddNewItem
+      path: '/addNewItem',
+      name: 'Add New Item',
+      component: AddNewItem
     },
     {
       path: '/inventoryList',
@@ -117,13 +121,13 @@ export default new VueRouter({
     {
       path: "/TimeSet",
       name: "Time Set",
-      component:TimeSet
+      component: TimeSet
     },
 
     {
       path: "/UpdateChannel",
       name: "Update Channel",
-      component:UpdateChannel
+      component: UpdateChannel
     },
     {
 
@@ -133,6 +137,12 @@ export default new VueRouter({
     },
 
     // Employee
+    {
+
+      path: '/EmpProfile',
+      name: 'EmpProfile',
+      component: EmpProfile
+    },
     {
 
       path: '/EmpEditProfile',
@@ -145,11 +155,16 @@ export default new VueRouter({
       component: EmpSignIn
     },
     {
+      path: '/EmpList',
+      name: 'EmpList',
+      component: EmpList
+    },
+    {
       path: '/EmpAddNew',
       name: 'EmpAddNew',
       component: EmpAddNew
     },
-  {
+    {
       path: '/AddIncome',
       name: 'AddIncome',
       component: AddIncome
@@ -174,29 +189,29 @@ export default new VueRouter({
       name: 'UpdateExpense',
       component: UpdateExpense
     },
-        {
-            path: '/AddNewDoc',
-            name: 'AddNewDoc',
-            component: AddNewDoc
-        },
+    {
+      path: '/AddNewDoc',
+      name: 'AddNewDoc',
+      component: AddNewDoc
+    },
 
-        {
-            path: '/EditDoctor',
-            name: 'EditDoctor',
-            component: EditDoctor
-        },
+    {
+      path: '/EditDoctor',
+      name: 'EditDoctor',
+      component: EditDoctor
+    },
 
-        {
-            path: '/DoctorList',
-            name: 'DoctorList',
-            component: DoctorList
-        },
-        
-        {
-            path: '/DoctorProfile',
-            name: 'DoctorProfile',
-            component: DoctorProfile
-        },
+    {
+      path: '/DoctorList',
+      name: 'DoctorList',
+      component: DoctorList
+    },
 
-    ]
+    {
+      path: '/DoctorProfile',
+      name: 'DoctorProfile',
+      component: DoctorProfile
+    },
+
+  ]
 });
