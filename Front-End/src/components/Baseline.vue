@@ -107,7 +107,12 @@ export default {
         {
           action: "mdi-doctor",
           title: "Doctor",
-          items: [{ title: "List Item" }],
+          items: [
+            { action: "/AddNewDoc", title: "Add New Doctor" },
+            { action: "/EditDoctor", title: "Edit Doctor Details" },
+            { action: "/DoctorList", title: "Doctor List" },
+            { action: "/DoctorProfile", title: "Doctor Profile" },
+          ],
         },
         {
           action: "mdi-account-group",

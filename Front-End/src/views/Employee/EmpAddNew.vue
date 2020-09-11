@@ -177,6 +177,7 @@
                   @click="resetValidation"
                 >
                   Reset Validation
+                </v-btn>
               </v-card-text>
       </div>
 
