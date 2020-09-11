@@ -10,19 +10,17 @@ use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Patient extends Eloquent implements JWTSubject, AuthenticatableContract
+class Employee extends Eloquent implements JWTSubject, AuthenticatableContract
 {
     use Notifiable;
     use Authenticatable; 
 
     protected $connection = 'mongodb';
-    protected $collection = 'Patient';
+    protected $collection = 'Employee';
 
     protected $fillable = [
-        'Patient Name', 'Email','Password','Gender','Age','Address'
+        'Employee Name', 'Email','Password','Contact Number','Gender','Age','Address'
     ];
-
-    protected $hidden =['Password','remember_token'];
 
     public function getJWTIdentifier()
     {
