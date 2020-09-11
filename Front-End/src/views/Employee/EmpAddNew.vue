@@ -109,13 +109,27 @@
                         <v-text-field
                           v-model="address"
                           :rules="nameRules"
+                          :error-messages="addressErrors"
                           label="Address"
+                          @input="$v.address.$touch()"
+                          @blur="$v.address.$touch()"
                           dense
+                          required
                         ></v-text-field>
                       </v-col>
 
-                      <v-col cols="12" sm="12">
+                      <v-col class="d-flex" cols="12" sm="6">
+                        <v-select
+                         v-model="emptype"
+                         :items="emptype"
+                         label="Employee Type"
+                         dense
+                         outlined
+                        ></v-select>
+                      </v-col>
 
+                      <!-- Save & Clear buttons -->
+                      <v-col cols="12" sm="12">
                         <v-btn
                           color="secondarydark"
                           class="mr-4"
@@ -151,8 +165,9 @@ import router from '../../router'
 import Baseline from "../../components/Baseline.vue";
 import { validationMixin } from "vuelidate";
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
+
 export default {
-  name: "Employee ",
+  name: "Employee",
   components: {
     Baseline,
   },
@@ -162,22 +177,26 @@ export default {
     name: { required, minLength: minLength(4) },
     email: { required, email },
     password: { required, minLength: minLength(8) },
+    address: {required, minLength: minLength(5)},
     confirmPassword: { sameAsPassword: sameAs("password") },
     phone: { required },
   },
-  data: () => ({
-    return :{
-      Employee:{
-        name:'',
-        email:'',
-        password:'',
-        gender:'',
-        phone:'',
-        age:'',
-        address:'',
-      }
-    },
-  
+
+  data() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phone: "",
+      address:"",
+      emptype: ['Laboratory Assistant','Nurse','Pharmacist','Other Hospital Staff'],
+      status: null,
+      showPassword: false,
+
+    };
+  },
+
   computed: {
     nameErrors() {
       const errors = [];
@@ -215,8 +234,16 @@ export default {
       !this.$v.phone.required && errors.push("Contact Number is required");
       return errors;
     },
-  },
-}),  
+    addressErrors() {
+      const errors = [];
+      if (!this.$v.address.$dirty) return errors;
+      !this.$v.address.minLength &&
+        errors.push("Address must be at least 5 characters long.");
+      !this.$v.address.required && errors.push("Address is required.");
+      return errors;
+    },
+  }, 
+  // Save & Clear buttons 
   methods: {
      Empvalidate () {
       axios.post('http://localhost:8000/api/addEmp',{

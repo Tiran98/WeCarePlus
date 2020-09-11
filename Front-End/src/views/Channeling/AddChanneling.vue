@@ -1,198 +1,243 @@
 <template>
-<div class="container">
-  <v-form
-    ref="form"
-    v-model="valid"
-    lazy-validation
-  >
+  <b-container class="mt-3" fluid>
+    <v-main>
+      <h3>Add New Appointment</h3>
+      <hr />
 
-  <v-form-title><h3><B> Add Appointmnent </B></h3></v-form-title>
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form-group id="name-group" label="Full Name:" label-for="name">
+          <b-form-input
+            id="name"
+            v-model="form.name"
+            required
+            placeholder="Your Name"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group id="email-group" label="Email address:" label-for="email">
+          <b-form-input
+            id="email"
+            v-model="form.email"
+            type="email"
+            required
+            placeholder="Your Email"
+          ></b-form-input>
+        </b-form-group>
+        <b-row>
+          <b-col>
+            <b-form-group
+              id="number-group-"
+              label="Contact Number:"
+              label-for="number"
+            >
+              <b-form-input
+                id="number"
+                v-model="form.number"
+                required
+                placeholder="Your Phone"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group
+              id="contact-meth-group"
+              label="Prefered method of contact:"
+              label-for="contact-meth"
+            >
+              <b-form-radio
+                v-model="form.contact"
+                name="contact-meth"
+                value="Phone"
+                class="ml-2"
+                >Phone</b-form-radio
+              >
+              <b-form-radio
+                v-model="form.contact"
+                name="contact-meth"
+                value="Email"
+                class="ml-2"
+                >Email</b-form-radio
+              >
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+              id="service-group"
+              label="Service:"
+              label-for="service"
+            >
+              <b-form-select
+                id="service"
+                v-model="form.service"
+                :options="services"
+                required
+              ></b-form-select>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group id="doctor-group" label="Doctor:" label-for="doctor">
+              <b-form-select
+                id="doctor"
+                v-model="form.doctor"
+                :options="doctors"
+                required
+              ></b-form-select>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+              id="app-date-group"
+              label="Appointment Date:"
+              label-for="app-date"
+            >
+              <b-form-datepicker
+                id="app-date"
+                v-model="form.appDate"
+              ></b-form-datepicker>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group
+              id="appTime-group"
+              label="Appointment Time:"
+              label-for="appTime"
+            >
+              <b-form-select
+                id="appTime"
+                v-model="form.appTime"
+                :options="time"
+                required
+              ></b-form-select>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-form-group
+          id="firstVisit-group"
+          label="First time visit?"
+          label-for="firstVisit"
+        >
+          <b-form-radio v-model="form.firstVisit" name="firstVisit" value="Yes"
+            >Yes</b-form-radio
+          >
+          <b-form-radio v-model="form.firstVisit" name="firstVisit" value="No"
+            >No</b-form-radio
+          >
+        </b-form-group>
 
-    <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      label="Full Name"
-      required
-    ></v-text-field>
+        <b-form-group
+          id="details-group"
+          label="Other details you may wish to highlight:"
+          label-for="details"
+        >
+          <b-form-input
+            id="details"
+            v-model="form.details"
+            required
+            placeholder=""
+          ></b-form-input>
+        </b-form-group>
 
-    <v-text-field
-      v-model="number"
-      :counter="10"
-      :rules="numberRules"
-      label="Phone Number"
-      required
-    ></v-text-field>
-
-    <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
-      required
-    ></v-text-field>
-
-     <v-col cols="12">
-        <header>Contact Method</header>
-      <v-container fluid>
-    <v-radio-group v-model="radios" :mandatory="false">
-      <v-radio label="Email" value="radio-1"></v-radio>
-      <v-radio label="Phone" value="radio-2"></v-radio>
-    </v-radio-group>
-  </v-container>
-  </v-col>
-
-    <v-container id="dropdown-example">
-    <v-row>
-      <v-col cols="12" sm="4">
-        <p>Service</p>
-
-        <v-overflow-btn
-          class="my-2"
-          :items="dropdown_service"
-          label="Service Btn"
-          Service
-          target="#dropdown_example"
-        ></v-overflow-btn>
-      </v-col>
-
-      <v-col cols="12" sm="4">
-        <p>Doctor</p>
-
-        <v-overflow-btn
-          class="my-2"
-          :items="dropdown_name"
-          label="Doctor Btn"
-          Doctor
-          target="#dropdown-example"
-        ></v-overflow-btn> -->
-      </v-col>
-    </v-row>
-    </v-container>
-
-    <v-row justify="center">
-        <v-date-picker v-model="picker" color="green lighten-1" header-color="primary">
-            </v-date-picker>
-             </v-row>
-
-     <v-select
-        v-model="select"
-        :items="items"
-        :rules="[v => !!v || 'Time is required']"
-        label="Time"
-        required
-      ></v-select>        
-
-    <v-text-field
-      v-model="name"
-      :counter="100"
-      :rules="nameRules"
-      label="Details"
-      required
-    ></v-text-field>
-
-    <v-col cols="12">
-        <header>First Time Visit</header>
-      <v-container fluid>
-    <v-radio-group v-model="radios" :mandatory="false">
-      <v-radio label="Yes" value="radio-1"></v-radio>
-      <v-radio label="No" value="radio-2"></v-radio>
-    </v-radio-group>
-  </v-container>
-  </v-col>
-
-
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
-      required
-    ></v-checkbox>
-
-    <v-btn
-      :disabled="!valid"
-      class="mr-4 validate-btn"
-      @click="SubmitAnAppointment"
-    >
-      Submit An Appointment
-    </v-btn>
-
-    <v-btn
-      color="primarydark"
-      class="mr-4 validate-btn"
-      @click="Cancel"
-    >
-      Cancel
-    </v-btn>
-
-    
-  </v-form>
-  </div>
+        <b-button type="submit" class="mr-3 submit-btn">Submit</b-button>
+        <b-button type="reset" class="reset-btn">Reset</b-button>
+      </b-form>
+    </v-main>
+    <BaselinePat />
+  </b-container>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      valid: true,
-      name: '',
-      nameRules: [
-        v => !!v || 'Full Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      ],
+import BaselinePat from "../../components/BaselinePat.vue";
 
-      number: '',
-      numberRules: [
-        v => !!v || 'Your Number is required',
-        v => (v && v.length <= 10) || 'Phone must be less than 10 integers',
-      ],
-
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-     
-      dropdown_service: [
-          'Clinic','Surgery','O.P.D'
-      ],
-      
-      dropdown_name: [
-        { text: 'Dr.Jayalath', callback: () => console.log('Dr.Jayalath') },
-        { text: 'Dr.Sudarshani', callback: () => console.log('Dr.Sudarshani') },
-        { text: 'Dr.Shadeen', callback: () => console.log('Dr.Shadeen') },
-      ],
-
-        return: {
-        picker: new Date().toISOString().substr(0,10),
-        radioGroup: 1,
-        //radioGroup: 1,
-       },
-
-       select: null,
-      items: [
-        '09.00a.m',
-        '12.00p.m',
-        '04.00p.m',
-        '08.00p.m',
-      ],
-    
-
-      checkbox: false,
-    }),
-    methods: {
-      SubmitAnAppointment () {
-        this.$refs.form.SubmitAnAppointment()
+export default {
+  name: "AddChanneling",
+  components: {
+    BaselinePat,
+  },
+  data() {
+    return {
+      form: {
+        email: "",
+        name: "",
+        number: "",
+        service: null,
+        doctor: null,
+        appDate: null,
+        time: null,
+        firstVisit: null,
+        details: "",
       },
-      Cancel () {
-        this.$refs.form.Cancel()
-      },
-     
+      services: [
+        { text: "Select the service", value: null },
+        "O.P.D",
+        "Surgery",
+        "Clinic",
+      ],
+      doctors: [
+        { text: "Select a doctor", value: null },
+        "Dr.Jayalath",
+        "Dr.Sudarshani",
+        "Dr.Shadeen",
+      ],
+      time: [
+        { text: "Select the time", value: null },
+        "06.00a.m-09.00a.m",
+        "11.00a.m-2.00p.m",
+        "04.00p.m-10.00p.m",
+      ],
+      show: true,
+    };
+  },
+  methods: {
+    onSubmit(evt) {
+      evt.preventDefault();
+      alert(JSON.stringify(this.form));
     },
-  }
+    onReset(evt) {
+      evt.preventDefault();
+      // Reset our form values
+      this.form.email = "";
+      this.form.name = "";
+      this.form.doctor = [];
+      this.form.services = [];
+      this.form.number = "";
+      // Trick to reset/clear native browser form validation state
+      this.show = false;
+      this.$nextTick(() => {
+        this.show = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
-.validate-btn {
-    background-color: teal;
-    color: #000;
+h3 {
+  color: teal;
+  font-weight: 500;
+}
+
+.submit-btn {
+  background-color: teal;
+  color: white;
+  border: none;
+  width: 400px;
+}
+
+.submit-btn:hover {
+  background-color: rgb(0, 156, 156);
+}
+
+.reset-btn {
+  background-color: #eb3333;
+  color: white;
+  border: none;
+  width: 150px;
+}
+
+.reset-btn:hover {
+  background-color: #ff6060;
 }
 </style>

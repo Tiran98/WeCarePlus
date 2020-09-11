@@ -13,7 +13,7 @@
                     <span>Patient</span>
                   </v-btn>
                 </router-link>
-                <router-link to="/dashboard" class="btn-login">
+                <router-link to="/EmpSignIn" class="btn-login">
                   <v-btn
                     large
                     block
