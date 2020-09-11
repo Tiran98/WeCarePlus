@@ -109,12 +109,16 @@ export default {
           title: "Doctor",
           items: [{ title: "List Item" }],
         },
+
+        // Employee
         {
           action: "mdi-account-group",
           title: "Employee",
           items: [
             { action: "/EmpList", title: "Employee List" },
             { action: "/EmpAddNew", title: "Add New Employee" },
+            { action: "/Empprofile", title: "Employee Profile" },
+
             
           ],
         },
@@ -133,11 +137,20 @@ export default {
           title: "Messages",
           items: [{ title: "List Item" }],
         },
+
+        //Finance & Reports
         {
           action: "mdi-cash-multiple",
           title: "Finance",
-          items: [{ title: "List Item" }],
+          items: [
+            { action: "/AddIncome", title: "Add Income" },
+            { action: "/AddExpenses", title: "Add Expenses" },
+            { action: "/ExpenseList", title: "Expense List" },
+            { action: "/IncomeList", title: "Income List" },
+            ],
         },
+
+
       ],
     };
   },

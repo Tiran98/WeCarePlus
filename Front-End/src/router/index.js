@@ -8,7 +8,20 @@ import PatientReg from '../views/Patient/PatientRegistration.vue'
 import Login from '../views/Registration/Login.vue'
 import registation from '@/views/Registration/patientRegistration.vue'
 import Missing from '../views/Missing.vue'
+<<<<<<< Updated upstream
 import AddNewPatient from '../views/AddNewPatient.vue'
+=======
+import WelcomePage from '../views/WelcomePage.vue'
+import AddNewPatient from '../views/Patient/AddNewPatient.vue'
+import AddChanneling from '../views/Channeling/AddChanneling.vue'
+import ChannelingList from '../views/Channeling/ChannelingList.vue'
+import TimeSet from '../views/Channeling/TimeSet.vue'
+import UpdateChannel from '../views/Channeling/UpdateChannel.vue'
+import AppointmentReceipt from '../views/Channeling/AppointmentReceipt.vue'
+import Dashboard from '../views/Dashboard.vue'
+
+// Employee
+>>>>>>> Stashed changes
 import EmpList from '../views/Employee/EmpList.vue'
 import EmpSignIn from '../views/Employee/EmpSignIn.vue'
 import EmpAddNew from '../views/Employee/EmpAddNew.vue'
@@ -16,6 +29,14 @@ import EmpEditProfile from '../views/Employee/EmpEditProfile.vue'
 import AddNewIncome from '../views/Finance & Reports/AddIncome.vue'
 
 Vue.use(VueRouter)
+
+// Finance
+import AddExpenses from '../views/Finance & Reports/AddExpenses.vue'
+import AddIncome from '../views/Finance & Reports/AddIncome.vue'
+import ExpenseList from '../views/Finance & Reports/ExpenseList.vue'
+import IncomeList from '../views/Finance & Reports/IncomeList.vue'
+import UpdateExpense from '../views/Finance & Reports/UpdateExpense.vue'
+
 
 export default new VueRouter({
 <<<<<<< Updated upstream
@@ -67,6 +88,50 @@ export default new VueRouter({
       component: home
     },
     {
+<<<<<<< Updated upstream
+=======
+      path: "/AddChanneling",
+      name: "Add Channeling",
+      component: AddChanneling
+    },
+
+    {
+      path: "/ChannelingList",
+      name: "Channeling List",
+      component: ChannelingList
+    },
+    {
+      path: "/TimeSet",
+      name: "Time Set",
+      component:TimeSet
+    },
+
+    {
+      path: "/UpdateChannel",
+      name: "Update Channel",
+      component:UpdateChannel
+    },
+    {
+
+      path: "/AppointmentReceipt",
+      name: "Appointment Receipt",
+      component: AppointmentReceipt
+    },
+
+    // Employee
+    {
+
+      path: '/EmpEditProfile',
+      name: 'EmpEditProfile',
+      component: EmpEditProfile
+    },
+    {
+      path: '/EmpList',
+      name: 'EmpList',
+      component: EmpList
+    },
+    {
+>>>>>>> Stashed changes
       path: '/EmpSignIn',
       name: 'EmpSignIn',
       component: EmpSignIn
@@ -76,11 +141,48 @@ export default new VueRouter({
       name: 'EmpAddNew',
       component: EmpAddNew
     },
+<<<<<<< Updated upstream
     {
       path: '/EmpEditProfile',
       name: 'EmpEditProfile',
       component: EmpEditProfile
     }
+=======
+      {
+      path: '/EmpProfile',
+      name: 'EmpProfile',
+      component: EmpProfile
+    },
+
+    //Finance
+    {
+      path: '/AddIncome',
+      name: 'AddIncome',
+      component: AddIncome
+    },
+    {
+      path: '/AddExpenses',
+      name: 'AddExpenses',
+      component: AddExpenses
+    },
+    {
+      path: '/ExpenseList',
+      name: 'ExpenseList',
+      component: ExpenseList
+    },
+    {
+      path: '/IncomeList',
+      name: 'IncomeList',
+      component: IncomeList
+    },
+    {
+      path: '/UpdateExpense',
+      name: 'UpdateExpense',
+      component: UpdateExpense
+    },
+    
+
+>>>>>>> Stashed changes
   ]
 
 =======
