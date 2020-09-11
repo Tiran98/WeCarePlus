@@ -187,14 +187,14 @@ export default {
       ];
     },
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.Appointment.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
     deleteItem(item) {
-      const index = this.desserts.indexOf(item);
+      const index = this.Appointment.indexOf(item);
       confirm("Are you sure you want to delete this item?") &&
-        this.desserts.splice(index, 1);
+        this.Appointment.splice(index, 1);
     },
     close() {
       this.dialog = false;
@@ -205,9 +205,9 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.Appointment[this.editedIndex], this.editedItem);
       } else {
-        this.desserts.push(this.editedItem);
+        this.Appointment.push(this.editedItem);
       }
       this.close();
     },

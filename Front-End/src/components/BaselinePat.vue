@@ -78,6 +78,7 @@ export default {
         {
           action: "mdi-view-dashboard",
           title: "Dashboard",
+          items: [{ action: "/PatientDashboard", title: "Patient Dashboard" }],
         },
         {
           action: "mdi-bookmark-plus",
