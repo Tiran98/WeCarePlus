@@ -1,50 +1,71 @@
 <template>
-  <div id="clock">
-    <p class="date">{{ date }}</p>
-    <p class="time">{{ time }}</p>
-    <p class="text">DIGITAL CLOCK with Vue.js</p>
-  </div>
+  <time class="clock">
+    <span class="clock__hour">{{ hours }}</span
+    ><!--
+    --><span
+      class="clock__colon"
+      :style="{
+        visibility: !blink || seconds % 2 === 0 ? 'visible' : 'hidden',
+      }"
+      >:</span
+    ><!--
+    --><span class="clock__minutes">{{ minutes }}</span
+    ><!--
+    --><span
+      class="clock__colon"
+      v-if="displaySeconds"
+      :style="{
+        visibility: !blink || seconds % 2 === 0 ? 'visible' : 'hidden',
+      }"
+      >:</span
+    ><!--
+    --><span v-if="displaySeconds" class="clock__seconds">{{ seconds }}</span
+    ><!--
+    --><span v-if="twelveHour" class="clock__ampm">{{ amPm }}</span>
+  </time>
 </template>
 
 <script>
-export default {
-  name: "Clock",
-  data: function() {
-return {
-    time: "",
-    date: "",
-  };
-},
-};
-
-var week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-var timerID = setInterval(updateTime, 1000);
-updateTime();
-function updateTime() {
-  var cd = new Date();
-  clock.time =
-    zeroPadding(cd.getHours(), 2) +
-    ":" +
-    zeroPadding(cd.getMinutes(), 2) +
-    ":" +
-    zeroPadding(cd.getSeconds(), 2);
-  clock.date =
-    zeroPadding(cd.getFullYear(), 4) +
-    "-" +
-    zeroPadding(cd.getMonth() + 1, 2) +
-    "-" +
-    zeroPadding(cd.getDate(), 2) +
-    " " +
-    week[cd.getDay()];
-}
-
-function zeroPadding(num, digit) {
-  var zero = "";
-  for (var i = 0; i < digit; i++) {
-    zero += "0";
+function padZero(number) {
+  if (number < 10) {
+    return "0" + number;
   }
-  return (zero + num).slice(-digit);
+  return number;
 }
+const getDate = () => new Date();
+const getSeconds = () => padZero(getDate().getSeconds());
+const getMinutes = () => padZero(getDate().getMinutes());
+const getHour = (twelveHour) => {
+  let hours = getDate().getHours();
+  if (twelveHour && hours > 12) {
+    hours = hours - 12;
+  }
+  return padZero(hours);
+};
+const getAmPm = () => (getDate().getHours() > 12 ? "pm" : "am");
+export default {
+  name: "vue-digital-clock",
+  props: ["blink", "displaySeconds", "twelveHour"],
+  data() {
+    return {
+      ticker: null,
+      minutes: getMinutes(),
+      hours: getHour(this.twelveHour),
+      seconds: getSeconds(),
+      amPm: getAmPm(),
+    };
+  },
+  created() {
+    this.ticker = setInterval(() => {
+      this.minutes = getMinutes();
+      this.hours = getHour(this.twelveHour);
+      this.seconds = getSeconds();
+    }, 1000);
+  },
+  destroyed() {
+    clearInterval(this.ticker);
+  },
+};
 </script>
 
 <style lang="scss" scoped>

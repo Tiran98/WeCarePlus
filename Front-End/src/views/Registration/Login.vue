@@ -1,40 +1,63 @@
 <template>
-    <body>
-        <div id="ptLogin">
-            <div class="container login-container">
-                <div class="row">
-                    <div class="col-md-6 login-form">
-                        <h3 class="signin_txtTitle">Patient Login</h3>
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Email *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Your Password *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <a href="#" class="ForgetPwd">Forget Password?</a>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btnSubmit signinbtn" value="Sign In" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btnSubmit signupbtn" value="Sign Up" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>        
-        </div>
-    </body>
+    <v-app id="inspire">
+        <v-main>
+        <v-container
+            class="fill-height"
+            fluid
+        >
+            <v-row
+            align="center"
+            justify="center"
+            >
+            <v-col
+                cols="12"
+                sm="8"
+                md="4"
+            >
+                <v-card class="elevation-12">
+                <v-toolbar
+                    color="primary"
+                    dark
+                    flat
+                >
+                    <v-toolbar-title>Patient Login</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                
+                </v-toolbar>
+                <v-card-text>
+                    <v-form @submit.prevent="SignIn">
+                    <v-text-field
+                        label="Login"
+                        name="login"
+                        prepend-icon="mdi-account"
+                        type="text"
+                        v-model ="username"
+                    ></v-text-field>
+
+                    <v-text-field
+                        id="password"
+                        label="Password"
+                        name="password"
+                        prepend-icon="mdi-lock"
+                        type="password"
+                        v-model="password"
+                    ></v-text-field>
+                    </v-form>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary">Login</v-btn>
+                </v-card-actions>
+                </v-card>
+            </v-col>
+            </v-row>
+        </v-container>
+        </v-main>
+    </v-app>   
 </template>
 
 <script>
-export default {
-    
-}
-</script>
+  export default {
 
-<style scoped>
-    @import "../../assets/CSS/Login.css"
-</style>
+  }
+</script>
