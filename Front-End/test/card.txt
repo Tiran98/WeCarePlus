@@ -1,0 +1,28 @@
+<v-card
+        max-width="300px"
+        max-height="50px"
+        class="mx-auto d-inline-block"
+        color="#fa0f2e"
+        dark
+        href
+        hover
+      >
+        <v-container>
+          <v-row justify="space-between ">
+            <v-col cols="3">
+              <v-icon>mdi-calendar-range</v-icon>
+            </v-col>
+            <v-col cols="6">
+              <v-card-title class="dash-card">Appointments</v-card-title>
+            </v-col>
+            <v-col cols="3">
+              <v-icon>mdi-numeric-2-circle-outline</v-icon>
+            </v-col>
+            <!-- <v-col cols="auto">
+              <v-card-actions>
+                <v-btn text>Appointments</v-btn>
+              </v-card-actions>
+            </v-col> -->
+          </v-row>
+        </v-container>
+      </v-card>

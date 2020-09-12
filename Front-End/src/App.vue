@@ -1,24 +1,37 @@
 <template>
   <div id="app">
-    <!-- <ptRegistation></ptRegistation> -->
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
-
-import ptRegistation from '../src/views/Registration/patientRegistration'
-import ptLogin from '../src/views/Registration/Login'
-
 export default {
-  name: 'App',
-  components: {
-    ptRegistation,
-    ptLogin
-    
-  }
-}
+  name: "App",
+
+  components: {},
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
-<style>
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
 </style>
