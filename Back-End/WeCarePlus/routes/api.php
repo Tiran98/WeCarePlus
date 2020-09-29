@@ -14,6 +14,11 @@ Route::post('login','RegisterController@login');
 Route::post('addEmp','EmployeeController@addEmp');
 Route::get ('empListItems', 'EmployeeController@index' );
 
+Route::resource('supplier', 'SupplierController');
+
+Route::resource('stock-order', 'StockOrderController');
+
+
 Route::middleware('auth:api')->get('/register',function(Request $request){
     return $request->patient();
 });

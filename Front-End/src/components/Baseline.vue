@@ -36,8 +36,6 @@
       </v-list>
     </v-navigation-drawer>
 
-   
-
     <v-app-bar app color="primary" dark>
       <v-toolbar-title class="toolbar-title">WeCare+</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -71,13 +69,9 @@
 </template>
 
 <script>
-
-
 export default {
   name: "Baseline",
-  components: {
-    
-  },
+  components: {},
   data() {
     return {
       drawer: true,
@@ -123,14 +117,17 @@ export default {
             { action: "/EmpList", title: "Employee List" },
             { action: "/EmpAddNew", title: "Add New Employee" },
             { action: "/Empprofile", title: "Employee Profile" },
-
-            
           ],
         },
         {
           action: "mdi-truck-check",
           title: "Supplier",
-          items: [{ title: "List Item" }],
+          items: [
+            { action: "/add-new-supplier", title: "Add New Supplier" },
+            { action: "/suppliers-list", title: "Suppliers List" },
+            { action: "/add-new-order", title: "Order New Stock" },
+            { action: "/order-history", title: "Order History" },
+          ],
         },
         {
           action: "mdi-server",
@@ -155,10 +152,8 @@ export default {
             { action: "/AddExpenses", title: "Add Expenses" },
             { action: "/ExpenseList", title: "Expense List" },
             { action: "/IncomeList", title: "Income List" },
-            ],
+          ],
         },
-
-
       ],
     };
   },
