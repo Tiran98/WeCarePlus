@@ -14,6 +14,10 @@ Route::post('login','RegisterController@login');
 Route::post('addEmp','EmployeeController@addEmp');
 Route::get ('empListItems', 'EmployeeController@index' );
 
+Route::get ('supplier-generate-pdf', 'PdfGenerateController@supplierList' );
+
+Route::get ('order-history-generate-pdf', 'PdfGenerateController@orderHistory' );
+
 Route::resource('supplier', 'SupplierController');
 
 Route::resource('stock-order', 'StockOrderController');
