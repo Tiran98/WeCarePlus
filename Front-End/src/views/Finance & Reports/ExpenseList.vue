@@ -105,6 +105,17 @@
           </v-btn>
         </template>
       </v-snackbar>
+      <v-btn
+        :disabled="ExpenseList === [] ? true : false"
+        color="secondarydark"
+        class="text-center"
+        href="http://localhost:8000/api/expense-generate-pdf" target="_blank"
+      >
+        Download Expenses List
+        <v-icon right>
+          mdi-cloud-download
+        </v-icon>
+      </v-btn>
       <Baseline />
     </v-main>
   </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Income;
 use Illuminate\Http\Request;
+use PDF;
 
 class IncomeController extends Controller
 {

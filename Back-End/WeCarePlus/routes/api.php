@@ -15,7 +15,6 @@ Route::post('addEmp','EmployeeController@addEmp');
 Route::get ('empListItems', 'EmployeeController@index' );
 
 Route::get ('supplier-generate-pdf', 'PdfGenerateController@supplierList' );
-
 Route::get ('order-history-generate-pdf', 'PdfGenerateController@orderHistory' );
 
 Route::resource('supplier', 'SupplierController');
@@ -23,6 +22,9 @@ Route::resource('stock-order', 'StockOrderController');
 
 Route::resource('income', 'IncomeController');
 Route::resource('expense', 'ExpenseController');
+
+Route::get ('income-generate-pdf', 'PdfGenerateController@incomeList' );
+Route::get ('expense-generate-pdf', 'PdfGenerateController@expenseList' );
 
 
 Route::middleware('auth:api')->get('/register',function(Request $request){
