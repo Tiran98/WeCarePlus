@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Supplier;
 use Illuminate\Http\Request;
+use PDF;
 
 class SupplierController extends Controller
 {
@@ -54,7 +55,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        
+     
     }
 
     /**

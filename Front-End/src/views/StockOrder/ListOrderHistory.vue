@@ -32,6 +32,17 @@
 
         <!-- Baseline Import -->
       </v-data-table>
+      <v-btn
+        :disabled="OrderList === [] ? true : false"
+        color="secondarydark"
+        class="text-center"
+        href="http://localhost:8000/api/order-history-generate-pdf" target="_blank"
+      >
+        Download Order History
+        <v-icon right>
+          mdi-cloud-download
+        </v-icon>
+      </v-btn>
       <Baseline />
     </v-main>
   </div>

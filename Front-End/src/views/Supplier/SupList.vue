@@ -95,25 +95,59 @@
 
         <!-- Baseline Import -->
       </v-data-table>
-      <v-snackbar v-model="success_snackbar" color="#43A047" centered elevation="24" :timeout="timeout">
+      <v-snackbar
+        v-model="success_snackbar"
+        color="#43A047"
+        centered
+        elevation="24"
+        :timeout="timeout"
+      >
         {{ success_text }}
 
         <template v-slot:action="{ attrs }">
-          <v-btn color="#43A047" success_text v-bind="attrs" @click="success_snackbar = false">
+          <v-btn
+            color="#43A047"
+            success_text
+            v-bind="attrs"
+            @click="success_snackbar = false"
+          >
             Close
           </v-btn>
         </template>
       </v-snackbar>
-      <v-snackbar v-model="fail_snackbar" color="#C62828" centered elevation="24" :timeout="timeout">
+      <v-snackbar
+        v-model="fail_snackbar"
+        color="#C62828"
+        centered
+        elevation="24"
+        :timeout="timeout"
+      >
         {{ fail_text }}
 
         <template v-slot:action="{ attrs }">
-          <v-btn color="#C62828" fail_text v-bind="attrs" @click="fail_snackbar = false">
+          <v-btn
+            color="#C62828"
+            fail_text
+            v-bind="attrs"
+            @click="fail_snackbar = false"
+          >
             Close
           </v-btn>
         </template>
       </v-snackbar>
+      <v-btn
+        :disabled="SupplierList === [] ? true : false"
+        color="secondarydark"
+        class="text-center"
+        href="http://localhost:8000/api/supplier-generate-pdf" target="_blank"
+      >
+        Download Supplier List
+        <v-icon right>
+          mdi-cloud-download
+        </v-icon>
+      </v-btn>
       <Baseline />
+      
     </v-main>
   </div>
 </template>
@@ -133,9 +167,9 @@ export default {
     search: "",
     success_snackbar: false,
     fail_snackbar: false,
-    timeout:5000,
-    success_text:'Operation Successful !',
-    fail_text:'Operation Failed !',
+    timeout: 5000,
+    success_text: "Operation Successful !",
+    fail_text: "Operation Failed !",
     headers: [
       {
         text: "Supplier ID",
@@ -249,10 +283,10 @@ export default {
     deleteItem(item) {
       const index = this.SupplierList.indexOf(item);
       let r = confirm("Are you sure you want to delete this item ?");
-      if(r == true){
-          this.SupplierList.splice(index, 1) 
-          this.deleteSuppliers(item._id);
-      } 
+      if (r == true) {
+        this.SupplierList.splice(index, 1);
+        this.deleteSuppliers(item._id);
+      }
     },
     close() {
       this.dialog = false;
