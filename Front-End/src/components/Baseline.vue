@@ -157,6 +157,9 @@ export default {
       ],
     };
   },
+  methods:{
+    stop(){}
+  }
 };
 </script>
 

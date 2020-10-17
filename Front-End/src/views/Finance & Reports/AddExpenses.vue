@@ -15,10 +15,14 @@
                        <v-col class="d-flex" cols="12" sm="6">
                         <v-select
                          v-model="emptype"
-                         :items="emptype"
+                         :rules="emptypeRules"
+                         :items="emptypelist"
                          label="Expense Type"
                          dense
                          outlined
+                         required
+                         @input="$v.emptype.$touch()"
+                         @blur="$v.emptype.$touch()"
                         ></v-select>
                       </v-col>
 
@@ -35,11 +39,15 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="date"
-                          label="Income Date"
+                          :rules="dateRules"
+                          label="Expense Date"
                           prepend-icon="mdi-event"
                           readonly
                           v-bind="attrs"
                           v-on="on"
+                          required
+                          @input="$v.date.$touch()"
+                          @blur="$v.date.$touch()"
                         ></v-text-field>
                       </template>
                       <v-date-picker v-model="date" @input="menu2 = false"
@@ -51,7 +59,7 @@
                       <v-col cols="12" sm="12">
                         <v-text-field
                           v-model="regNum"
-                          :error-messages="regNumErrors"
+                          :rules="regNumRules"
                           label="Patient Registration Number"
                           dense
                           required
@@ -63,7 +71,7 @@
                       <v-col cols="12" sm="12">
                         <v-text-field
                           v-model="name"
-                          :error-messages="nameErrors"
+                          :rules="nameRules" 
                           label="Full Name"
                           dense
                           required
@@ -75,22 +83,26 @@
                       <v-col class="d-flex" cols="12" sm="6">
                         <v-select
                          v-model="paytype"
-                         :items="paytype"
+                         :rules="paytypeRules"
+                         :items="paytypeList"
                          label="Payment Type"
                          dense
                          outlined
+                         required
+                         @input="$v.paytype.$touch()"
+                         @blur="$v.paytype.$touch()"
                         ></v-select>
                       </v-col>
 
                       <v-col cols="12" sm="12">
                         <v-text-field
-                          v-model="phone"
-                          :error-messages="phoneErrors"
+                          v-model="payAmount"
+                          :rules="payAmountRules"
                           label="Payment Amount"
                           required
-                          @input="$v.phone.$touch()"
-                          @blur="$v.phone.$touch()"
                           dense
+                          @input="$v.payAmount.$touch()"
+                          @blur="$v.payAmount.$touch()"
                         ></v-text-field>
                       </v-col>
 
@@ -99,7 +111,7 @@
                         <v-btn
                           color="secondarydark"
                           class="mr-4"
-                          @click="register"
+                          @click="addExpense"
                           dark
                         >
                           Save
@@ -121,100 +133,77 @@
 
 <script>
 import Baseline from "../../components/Baseline.vue";
-import { validationMixin } from "vuelidate";
-import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
+import axios from "axios";
+import router from "../../router";
 
 export default {
   name: "NewIncome",
   components: {
     Baseline,
   },
-
-  mixins: [validationMixin],
-  validations: {
-    name: { required, minLength: minLength(4) },
-    email: { required, email },
-    password: { required, minLength: minLength(8) },
-    address: {required, minLength: minLength(5)},
-    confirmPassword: { sameAsPassword: sameAs("password") },
-    phone: { required },
-  },
   data() {
     return {
+      valid: true,
       name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phone: "",
-      address:"",
-      emptype: ['Laboratory Assistant','Nurse','Pharmacist','Other Hospital Staff'],
+      nameRules: [
+        (v) => !!v || "Name is required",
+        (v) =>
+          (v && v.length >= 4) || "Name must be at least 4 characters long.",
+      ],
+      date:"",
+      dateRules: [
+        (v) => !!v || "Date is required",
+      ],
+      regNum: "",
+      regNumRules: [
+        (v) => !!v || "Reg Number is required",
+        (v) =>
+          (v && v.length >= 5) || "Number must be at least 5 characters long.",
+      ],
+      emptype:"",
+      emptypeRules: [
+        (v) => !!v || "Employee Type is required",
+      ],
+      paytype:"",
+      paytypeRules: [
+        (v) => !!v || "Payment Type is required",
+      ],
+      paytypeList:["Credit Card","Cash"],
+      emptypelist:['Laboratory Assistant','Nurse','Pharmacist','Other Hospital Staff'],
+      menu2:"",
+      payAmount:"",
+      payAmountRules: [
+        (v) => !!v || "Payment Amount is required",
+      ],
       status: null,
       showPassword: false,
 
     };
   },
-  computed: {
-    nameErrors() {
-      const errors = [];
-      if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.minLength &&
-        errors.push("Name must be at least 4 characters long.");
-      !this.$v.name.required && errors.push("Name is required.");
-      return errors;
-    },
-    emailErrors() {
-      const errors = [];
-      if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.email && errors.push("Must be valid e-mail");
-      !this.$v.email.required && errors.push("E-mail is required");
-      return errors;
-    },
-    passwordErrors() {
-      const errors = [];
-      if (!this.$v.password.$dirty) return errors;
-      !this.$v.password.minLength &&
-        errors.push("Password must be at least 8 characters long");
-      !this.$v.password.required && errors.push("Password is required");
-      return errors;
-    },
-    confirmPasswordErrors() {
-      const errors = [];
-      if (!this.$v.confirmPassword.$dirty) return errors;
-      !this.$v.confirmPassword.sameAsPassword &&
-        errors.push("Passwords doesn't match");
-      return errors;
-    },
-    phoneErrors() {
-      const errors = [];
-      if (!this.$v.phone.$dirty) return errors;
-      !this.$v.phone.required && errors.push("Contact Number is required");
-      return errors;
-    },
-    addressErrors() {
-      const errors = [];
-      if (!this.$v.address.$dirty) return errors;
-      !this.$v.address.minLength &&
-        errors.push("Address must be at least 5 characters long.");
-      !this.$v.address.required && errors.push("Address is required.");
-      return errors;
-    },
-  },
   // Save & Clear buttons 
   methods: {
-    async register() {
-      this.$v.$touch();
-      this.$store
-        .dispatch("register", {
-          name: this.name,
-          email: this.email,
-          password: this.password,
+    addExpense() {
+      this.$refs.form.validate();
+      if(this.$refs.form.validate()){
+        axios
+          .post("http://localhost:8000/api/expense", {
+            emptype: this.emptype,
+            date: this.date,
+            regNum: this.regNum,
+            name:this.name,
+            paytype:this.paytype,
+            payAmount:this.payAmount,
+
         })
-        .then(() => {
-          this.$router.push({ name: "Dashboard" });
+        .then((response) => {
+            console.log(response);
+            console.log("Done");
+            router.push({ name: "ExpenseList" });
         })
         .catch((err) => {
           console.log(err);
         });
+      }
     },
     reset() {
       this.$refs.form.reset();

@@ -15,8 +15,10 @@ Route::post('addEmp','EmployeeController@addEmp');
 Route::get ('empListItems', 'EmployeeController@index' );
 
 Route::resource('supplier', 'SupplierController');
-
 Route::resource('stock-order', 'StockOrderController');
+
+Route::resource('income', 'IncomeController');
+Route::resource('expense', 'ExpenseController');
 
 
 Route::middleware('auth:api')->get('/register',function(Request $request){
