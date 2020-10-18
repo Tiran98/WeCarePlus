@@ -17,7 +17,9 @@
         "laravel/framework": "^7.24",
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
-        "tymon/jwt-auth": "^1.0"
+        "laravel/ui": "2.4.0",
+        "mongodb/mongodb": "^1.7",
+        "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

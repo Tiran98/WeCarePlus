@@ -8,9 +8,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['middleware' => ['web']], function () {
+    // Route::post('register','PatientController@register');
+    // Route::post('login','PatientController@login');
+    // Route::get('login','PatientController@showLoginForm');
+    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+});
+Route::post('register','PatientController@register');
+Route::post('login','PatientController@login');
+Route::get('login','PatientController@showLoginForm');
 
-Route::post('register','RegisterController@register');
-Route::post('login','RegisterController@login');
 Route::post('addEmp','EmployeeController@addEmp');
 Route::get ('empListItems', 'EmployeeController@index' );
 
@@ -23,12 +30,15 @@ Route::resource('supplier', 'SupplierController');
 Route::resource('stock-order', 'StockOrderController');
 
 
-Route::middleware('auth:api')->get('/register',function(Request $request){
-    return $request->patient();
-});
-Route::middleware('auth:api')->get('/login',function(Request $request){
-    return $request->patient();
-});
+// Route::middleware('auth:api')->get('/register',function(Request $request){
+//     return $request->user();
+// });
+// Route::middleware('auth:api')->get('/login',function(Request $request){
+//     return $request->patient();
+// });
+
+Route::resource('patientIndex', 'PatientController');
+
 Route::middleware('auth:api')->get('/addEmp',function(Request $request){
     return $request->Employee();
 });

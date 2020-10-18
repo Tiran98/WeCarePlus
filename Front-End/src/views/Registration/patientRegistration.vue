@@ -177,7 +177,8 @@ import router from '../../router'
         },
         validate () {
 
-        axios.post('http://localhost:8001/api/register',{name:this.name,
+        axios.post('http://localhost:8001/api/register',{
+        name:this.name,
         email : this.email,
         password : this.password,
         gender : this.gender,

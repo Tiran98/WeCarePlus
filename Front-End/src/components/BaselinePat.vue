@@ -54,7 +54,14 @@
           </v-btn>
         </template>
         <v-card>
-          <router-link to="/" class="logout-btn">Logout</router-link>
+            <v-btn
+                  block
+                  color="white"
+                  @click="logout"
+                  class="btn-login"
+                >
+                  <span>Logout</span>
+                </v-btn>
         </v-card>
       </v-menu>
     </v-app-bar>
@@ -68,6 +75,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import router from '../router'
+
 export default {
   name: "Baseline",
   components: {},
@@ -103,6 +113,18 @@ export default {
         },
       ],
     };
+  },
+
+  methods: {
+    logout () {
+     axios.get('http://127.0.0.1:8000/api/logout')
+     .then((response)=>
+      {
+        console.log(response);
+        console.log("Done");
+        router.push({name: 'Welcome Page'})
+      }).catch((err) => console.log(err));
+    }
   },
 };
 </script>

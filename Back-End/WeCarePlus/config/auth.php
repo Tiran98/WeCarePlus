@@ -42,9 +42,19 @@ return [
         ],
 
         'api' => [
-            'driver' => 'passport',
+            'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
+        ],
+
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
+
+        'patient-api' => [
+            'driver' => 'token',
+            'provider' => 'patients',
         ],
     ],
 
@@ -70,6 +80,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Patient::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -98,6 +114,12 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'patients' => [
+            'provider' => 'patients',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 

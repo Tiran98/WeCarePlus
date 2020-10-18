@@ -13,13 +13,14 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class Patient extends Eloquent implements JWTSubject, AuthenticatableContract
 {
     use Notifiable;
-    use Authenticatable; 
+    use Authenticatable;
 
     protected $connection = 'mongodb';
     protected $collection = 'Patient';
+    protected $guard = 'patient';
 
     protected $fillable = [
-        'Patient Name', 'Email','Password','Gender','Age','Address'
+        'Patient Name', 'Email','Password','Gender','Age','Phone', 'Address'
     ];
 
     protected $hidden =['Password','remember_token'];

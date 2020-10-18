@@ -214,6 +214,7 @@ export default {
         password:'',
         gender:'',
         age:'',
+        phone:'',
         address:'',
       }
     },
@@ -267,17 +268,19 @@ export default {
   },}),
   methods: {
     validate () {
-      axios.post('http://localhost:8000/api/register',{
+      axios.post('http://127.0.0.1:8000/api/register',{
       name:this.name,
       email : this.email,
       password : this.password,
       gender : this.gender,
       age : this.age,
-      address : this.address}).then((response)=>
+      phone: this.phone,
+      address : this.address,
+      }).then((response)=>
       {
         console.log(response);
         console.log("Done");
-        router.push({name: 'PatientLogin'})
+        router.push({name: 'Patientlogin'})
       })
     },
     reset() {
@@ -286,37 +289,6 @@ export default {
     },
   }
 }
-
-// export default {
-//   name: "Employee ",
-//   components: {},
-//   data: () => ({
-//     valid: true,
-//     items: ["sanda", "tiran", "udari"],
-//     name: "",
-//     nameRules: [
-//       (v) => !!v || "Name is required",
-//       (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
-//     ],
-
-//     email: "",
-//     emailRules: [
-//       (v) => !!v || "E-mail is required",
-//       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-//     ],
-//   }),
-//   methods: {
-//     validate() {
-//       this.$refs.form.validate();
-//     },
-//     reset() {
-//       this.$refs.form.reset();
-//     },
-//     resetValidation() {
-//       this.$refs.form.resetValidation();
-//     },
-//   },
-// };
 </script>
 
 <style scoped>

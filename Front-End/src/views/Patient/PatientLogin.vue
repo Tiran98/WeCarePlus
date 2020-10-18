@@ -11,11 +11,11 @@
                 <v-subheader class="toolbar-title">WeCare+</v-subheader>
               </v-toolbar>
               <v-card-text>
-                <v-form @submit.prevent="Login" v-model="valid">
+                <v-form ref="form" @submit.prevent="Login" v-model="valid" lazy-validation>
                   <v-text-field
                     v-model="email"
                     label="Email"
-                    name="login"
+                    name="email"
                     prepend-icon="mdi-account"
                     type="text"
                   ></v-text-field>
@@ -31,7 +31,6 @@
                   <v-btn
                     color="primary"
                     @click="Login"
-                    to="/PatientDashboard"
                     block
                     >Login</v-btn
                   >
@@ -72,9 +71,9 @@ export default {
   }),
 
   methods:{
-    Login(){
+    Login () {
       // localStorage.setItem('usertoken');
-      axios.post('http://localhost:8000/api/login',{
+      axios.post('http://127.0.0.1:8000/api/login',{
         email : this.email,
         password : this.password
       }).then((response)=>
@@ -82,10 +81,9 @@ export default {
         localStorage.setItem('usertoken',response.data);
         console.log(response);
         console.log("Done");
-        router.push({name: 'Dashboard'})
-      })
-    }
-
+        router.push({name: 'PatientDashboard'})
+      }).catch((err) => console.log(err));
+    },
   },
   props: {
     source: String,

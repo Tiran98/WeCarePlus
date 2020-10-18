@@ -4,8 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreatePatientsTable extends Migration
 {
+
+    protected $connection = 'mongodb';
     /**
      * Run the migrations.
      *
@@ -14,7 +16,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::connection('mongodb')->
-        table('users', function (Blueprint $collection) {
+        table('patients', function (Blueprint $collection) {
             $collection->string('name');
             $collection->unique('email');
             $collection->string('password');
@@ -34,6 +36,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mongodb')->dropIfExists('users');
+        Schema::connection('mongodb')->dropIfExists('patients');
     }
 }
