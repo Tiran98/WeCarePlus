@@ -39,14 +39,14 @@ class PatientController extends Controller
         return redirect('patient')->with('success', 'Car has been successfully added');
     }
 
-    public function PatientIndex()
-    {
-        return response(Patient::all()->jsonSerialize());
-    }
+    // public function PatientIndex()
+    // {
+    //     return response(Patient::all()->jsonSerialize());
+    // }
 
     public function index()
     {
-      return view('patientindex');
+        return response(Patient::all()->jsonSerialize());
     }
 
     public function login(Request $request){
@@ -64,9 +64,28 @@ class PatientController extends Controller
         return response()->json(['error' => 'invalid credentials'],401);
     }
 
+    public function update(Request $request) {
+        $patient = Patient::find($request->patient);
+
+        $patient->name = $request->input('name');
+        $patient->gender = $request->input('gender');
+        $patient->age = $request->input('age');
+        $patient->phone = $request->input('phone');
+        $patient->address = $request->input('address');
+        $patient->save();
+
+        return response()-> json(['message' => $patient],200);
+    }
+
+    public function destroy(Request $request) {
+        $patient = Patient::destroy($request->patient);
+
+        return response()-> json(['message' => $patient],200);
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();
         return response()->json(['Done' => 'Logged out']);
-      }
+    }
 }

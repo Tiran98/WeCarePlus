@@ -17,6 +17,7 @@ Route::group(['middleware' => ['web']], function () {
 Route::post('register','PatientController@register');
 Route::post('login','PatientController@login');
 Route::get('login','PatientController@showLoginForm');
+Route::resource('patientlist', 'PatientController');
 
 Route::post('addEmp','EmployeeController@addEmp');
 Route::get ('empListItems', 'EmployeeController@index' );
@@ -36,8 +37,6 @@ Route::resource('stock-order', 'StockOrderController');
 // Route::middleware('auth:api')->get('/login',function(Request $request){
 //     return $request->patient();
 // });
-
-Route::resource('patientIndex', 'PatientController');
 
 Route::middleware('auth:api')->get('/addEmp',function(Request $request){
     return $request->Employee();
