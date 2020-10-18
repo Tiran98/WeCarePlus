@@ -64,21 +64,28 @@ class PatientController extends Controller
         return response()->json(['error' => 'invalid credentials'],401);
     }
 
-    public function update(Request $request) {
-        $patient = Patient::find($request->patient);
+    public function edit($id)
+    {
+        $patient = Patient::find($id);
+        return response()-> json(['message' => $patient],200);
+    }
 
-        $patient->name = $request->input('name');
-        $patient->gender = $request->input('gender');
-        $patient->age = $request->input('age');
-        $patient->phone = $request->input('phone');
-        $patient->address = $request->input('address');
+    public function update($id, Request $request) {
+        $patient = Patient::find($id);
+
+        $patient->name = $request->get('name');
+        $patient->gender = $request->get('gender');
+        $patient->age = $request->get('age');
+        $patient->phone = $request->get('phone');
+        $patient->address = $request->get('address');
         $patient->save();
 
         return response()-> json(['message' => $patient],200);
     }
 
-    public function destroy(Request $request) {
-        $patient = Patient::destroy($request->patient);
+    public function destroy($id) {
+        $patient = Patient::find($id);
+        $patient->delete();
 
         return response()-> json(['message' => $patient],200);
     }

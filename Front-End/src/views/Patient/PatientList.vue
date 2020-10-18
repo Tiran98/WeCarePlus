@@ -18,7 +18,7 @@
         :headers="headers"
         :items="patients"
         :items-per-page="10"
-        class="elevation-1 mt-3"
+        class="elevation-1 mt-1"
       >
        <template v-slot:top>
           <v-toolbar flat color="white">
@@ -139,15 +139,14 @@ export default {
         {
           text: "Patient ID",
           align: "start",
-          sortable: false,
           value: "_id",
         },
         { text: "Name", value: "name" },
         { text: "Age", value: "age" },
-        { text: "Gender", value: "gender" },
-        { text: "Email", value: "email" },
-        { text: "Mobile", value: "phone" },
-        { text: "Address", value: "address" },
+        { text: "Gender", value: "gender", sortable: false },
+        { text: "Email", value: "email", sortable: false },
+        { text: "Mobile", value: "phone", sortable: false },
+        { text: "Address", value: "address", sortable: false },
         { text: "Action", value: "action",  sortable: false},
       ],
       patients: [],
@@ -213,6 +212,17 @@ export default {
           : (this.fail_snackbar == true);
       });
     },
+    editPatient(_id){
+      axios.get('http://127.0.0.1:8000/api/patientlist/' + _id)
+      .then((response) => {
+        console.log("response", response);
+        console.log("Done Update");
+        console.log(response.status);
+        response.status == 200
+          ? (this.editedItem = response.data)
+          : console.log("error fetching data");
+      });
+    },
     deletePatient(_id){
       axios.delete('http://127.0.0.1:8000/api/patientlist/' + _id)
       .then((response) => {
@@ -227,6 +237,7 @@ export default {
     editItem(item) {
       this.editedIndex = this.patients.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      this.editPatient(this.editedItem._id);
       this.dialog = true;
     },
     deleteItem(item) {
