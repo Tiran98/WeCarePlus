@@ -11,7 +11,12 @@
                 <v-subheader class="toolbar-title">WeCare+</v-subheader>
               </v-toolbar>
               <v-card-text>
-                <v-form ref="form" @submit.prevent="validate" v-model="valid" lazy-validation>
+                <v-form
+                  ref="form"
+                  @submit.prevent="validate"
+                  v-model="valid"
+                  lazy-validation
+                >
                   <v-container fluid>
                     <v-row>
                       <v-col cols="12" sm="12">
@@ -190,8 +195,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import router from '../../router'
+import axios from "axios";
+import router from "../../router";
 
 import { validationMixin } from "vuelidate";
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
@@ -206,89 +211,91 @@ export default {
     phone: { required },
     checkbox: { required },
   },
-   data: () => ({
-    return :{
-      patient:{
-        name:'',
-        email:'',
-        password:'',
-        gender:'',
-        age:'',
-        phone:'',
-        address:'',
-      }
+  data: () => ({
+    return: {
+      patient: {
+        name: "",
+        email: "",
+        password: "",
+        gender: "",
+        age: "",
+        phone: "",
+        address: "",
+      },
     },
 
-  computed: {
-    nameErrors() {
-      const errors = [];
-      if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.minLength &&
-        errors.push("Name must be at least 4 characters long.");
-      !this.$v.name.required && errors.push("Name is required.");
-      return errors;
+    computed: {
+      nameErrors() {
+        const errors = [];
+        if (!this.$v.name.$dirty) return errors;
+        !this.$v.name.minLength &&
+          errors.push("Name must be at least 4 characters long.");
+        !this.$v.name.required && errors.push("Name is required.");
+        return errors;
+      },
+      emailErrors() {
+        const errors = [];
+        if (!this.$v.email.$dirty) return errors;
+        !this.$v.email.email && errors.push("Must be valid e-mail");
+        !this.$v.email.required && errors.push("E-mail is required");
+        return errors;
+      },
+      passwordErrors() {
+        const errors = [];
+        if (!this.$v.password.$dirty) return errors;
+        !this.$v.password.minLength &&
+          errors.push("Password must be at least 8 characters long");
+        !this.$v.password.required && errors.push("Password is required");
+        return errors;
+      },
+      confirmPasswordErrors() {
+        const errors = [];
+        if (!this.$v.confirmPassword.$dirty) return errors;
+        !this.$v.confirmPassword.sameAsPassword &&
+          errors.push("Passwords doesn't match");
+        return errors;
+      },
+      phoneErrors() {
+        const errors = [];
+        if (!this.$v.phone.$dirty) return errors;
+        !this.$v.phone.required && errors.push("Contact Number is required");
+        return errors;
+      },
+      checkboxErrors() {
+        const errors = [];
+        if (!this.$v.checkbox.$dirty) return errors;
+        !this.$v.checkbox.required &&
+          errors.push(
+            "Please accept our Terms of Use & Privacy Policy before submitting the form"
+          );
+        return errors;
+      },
     },
-    emailErrors() {
-      const errors = [];
-      if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.email && errors.push("Must be valid e-mail");
-      !this.$v.email.required && errors.push("E-mail is required");
-      return errors;
-    },
-    passwordErrors() {
-      const errors = [];
-      if (!this.$v.password.$dirty) return errors;
-      !this.$v.password.minLength &&
-        errors.push("Password must be at least 8 characters long");
-      !this.$v.password.required && errors.push("Password is required");
-      return errors;
-    },
-    confirmPasswordErrors() {
-      const errors = [];
-      if (!this.$v.confirmPassword.$dirty) return errors;
-      !this.$v.confirmPassword.sameAsPassword &&
-        errors.push("Passwords doesn't match");
-      return errors;
-    },
-    phoneErrors() {
-      const errors = [];
-      if (!this.$v.phone.$dirty) return errors;
-      !this.$v.phone.required && errors.push("Contact Number is required");
-      return errors;
-    },
-    checkboxErrors() {
-      const errors = [];
-      if (!this.$v.checkbox.$dirty) return errors;
-      !this.$v.checkbox.required &&
-        errors.push(
-          "Please accept our Terms of Use & Privacy Policy before submitting the form"
-        );
-      return errors;
-    },
-  },}),
+  }),
   methods: {
-    validate () {
-      axios.post('http://127.0.0.1:8000/api/register',{
-      name:this.name,
-      email : this.email,
-      password : this.password,
-      gender : this.gender,
-      age : this.age,
-      phone: this.phone,
-      address : this.address,
-      }).then((response)=>
-      {
-        console.log(response);
-        console.log("Done");
-        router.push({name: 'Patientlogin'})
-      })
+    validate() {
+      axios
+        .post("http://127.0.0.1:8000/api/register", {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          gender: this.gender,
+          age: this.age,
+          phone: this.phone,
+          address: this.address,
+        })
+        .then((response) => {
+          console.log(response);
+          console.log("Done");
+          router.push({ name: "Patientlogin" });
+        });
     },
     reset() {
       this.$refs.form.reset();
       this.$refs.form.resetValidation();
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>

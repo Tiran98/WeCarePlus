@@ -18,6 +18,7 @@ Route::post('register','PatientController@register');
 Route::post('login','PatientController@login');
 Route::get('login','PatientController@showLoginForm');
 Route::resource('patientlist', 'PatientController');
+Route::get ('patientListGen-pdf', 'PdfGenerateController@patientListGen' );
 
 Route::post('addEmp','EmployeeController@addEmp');
 Route::get ('empListItems', 'EmployeeController@index' );

@@ -9,7 +9,7 @@ import PatientReg from "../views/Patient/PatientRegistration.vue";
 
 import Missing from "../views/Missing.vue";
 
-import AddNewPatient from "../views/AddNewPatient.vue";
+import AddNewPatient from "../views/Patient/AddNewPatient.vue";
 
 import WelcomePage from "../views/WelcomePage.vue";
 

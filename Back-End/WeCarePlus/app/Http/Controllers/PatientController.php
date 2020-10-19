@@ -36,13 +36,13 @@ class PatientController extends Controller
         $patient->save();
 
 
-        return redirect('patient')->with('success', 'Car has been successfully added');
+        return response()-> json(['message' => $patient],200);
     }
 
-    // public function PatientIndex()
-    // {
-    //     return response(Patient::all()->jsonSerialize());
-    // }
+    public function PatientIndex()
+    {
+        return response(Patient::all()->jsonSerialize());
+    }
 
     public function index()
     {
