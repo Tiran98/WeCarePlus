@@ -3,6 +3,7 @@ import 'mutationobserver-shim'
 import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import App from './App.vue'
+import Vuelidate from "vuelidate";
 
 import Vuetify from 'vuetify'
 import vuetify from './plugins/vuetify';
@@ -17,11 +18,13 @@ import {
 Vue.use(Vuetify)
 Vue.prototype.moment = moment
 Vue.use(BootstrapVue)
+Vue.use(Vuelidate);
 
 Vue.config.productionTip = false
 
 new Vue({
   vuetify,
+  Vuelidate,
   router,
   store,
   BootstrapVue,

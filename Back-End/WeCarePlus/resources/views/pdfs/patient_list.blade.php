@@ -9,18 +9,18 @@
   </head>
   <body>
     <div class="text-center">
-        <h5>Patients List</h5>
+        <h3>Patients List</h3>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Phone</th>
-                <th>Address</th>
+                <td>Patient ID</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Age</td>
+                <td>Gender</td>
+                <td>Phone</td>
+                <td>Address</td>
             </tr>
         </thead>
         <tbody>
@@ -34,8 +34,9 @@
                 <td>{{$data->phone}}</td>
                 <td>{{$data->address}}</td>
             </tr>
+            @endforeach
         </tbody>
         </table>
-         @endforeach
+
   </body>
 </html>

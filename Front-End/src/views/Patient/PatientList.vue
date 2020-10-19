@@ -22,7 +22,7 @@
           color="secondarydark"
           class="btn"
           href="http://127.0.0.1:8000/api/patientListGen-pdf"
-          target="_blank"
+          target="_self"
           dark
         >
           Download Patient List

@@ -32,16 +32,6 @@
                         ></v-text-field>
                       </v-col>
 
-                      <!-- <v-col cols="12" sm="12">
-                        <v-text-field
-                          v-model="name"
-                          :rules="nameRules"
-                          label="Full Name"
-                          dense
-                          required
-                        ></v-text-field>
-                      </v-col> -->
-
                       <v-col cols="12" sm="12">
                         <v-text-field
                           v-model="email"
@@ -148,12 +138,6 @@
                         ></v-checkbox>
                       </v-col>
 
-                      <!-- 
-                <v-select
-                  :items="items"
-                  outlined
-                  label="Select TeST"
-                ></v-select> -->
                       <v-col cols="12" sm="12">
                         <v-btn
                           color="secondarydark"
@@ -164,23 +148,9 @@
                           Sumbit
                         </v-btn>
 
-                        <!-- <v-col cols="12" sm="12">
-                        <v-btn
-                          :disabled="!valid"
-                          color="secondarydark"
-                          class="mr-4"
-                          @click="validate"
-                        >
-                          Sumbit
-                        </v-btn> -->
-
                         <v-btn color="error" class="mr-4" @click="reset">
                           Clear
                         </v-btn>
-
-                        <!-- <v-btn color="warning" @click="resetValidation">
-                          Reset Validation
-                        </v-btn> -->
                       </v-col>
                     </v-row>
                   </v-container>
