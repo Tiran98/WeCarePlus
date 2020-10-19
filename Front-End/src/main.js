@@ -4,6 +4,7 @@ import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import App from './App.vue'
 import Vuelidate from "vuelidate";
+import SimpleVueValidation from 'simple-vue-validator';
 
 import Vuetify from 'vuetify'
 import vuetify from './plugins/vuetify';
@@ -16,6 +17,7 @@ import {
 } from 'bootstrap-vue'
 
 Vue.use(Vuetify)
+Vue.use(SimpleVueValidation);
 Vue.prototype.moment = moment
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate);

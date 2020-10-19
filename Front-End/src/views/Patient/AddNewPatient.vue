@@ -8,7 +8,7 @@
         <v-card-text>
           <v-form
             ref="form"
-            @submit.prevent="Channelvalidate"
+            @submit.prevent="validate"
             v-model="valid"
             lazy-validation
           >
@@ -142,23 +142,13 @@ import axios from "axios";
 import router from "../../router";
 
 import Baseline from "../../components/Baseline.vue";
-import { validationMixin } from "vuelidate";
-import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 
 export default {
   name: "AddNewPatient",
   components: {
     Baseline,
   },
-  mixins: [validationMixin],
-  validations: {
-    name: { required, minLength: minLength(4) },
-    email: { required, email },
-    password: { required, minLength: minLength(8) },
-    confirmPassword: { sameAsPassword: sameAs("password") },
-    phone: { required },
-    checkbox: { required },
-  },
+  validations: {},
   data: () => ({
     return: {
       patient: {
@@ -172,53 +162,7 @@ export default {
       },
     },
 
-    computed: {
-      nameErrors() {
-        const errors = [];
-        if (!this.$v.name.$dirty) return errors;
-        !this.$v.name.minLength &&
-          errors.push("Name must be at least 4 characters long.");
-        !this.$v.name.required && errors.push("Name is required.");
-        return errors;
-      },
-      emailErrors() {
-        const errors = [];
-        if (!this.$v.email.$dirty) return errors;
-        !this.$v.email.email && errors.push("Must be valid e-mail");
-        !this.$v.email.required && errors.push("E-mail is required");
-        return errors;
-      },
-      passwordErrors() {
-        const errors = [];
-        if (!this.$v.password.$dirty) return errors;
-        !this.$v.password.minLength &&
-          errors.push("Password must be at least 8 characters long");
-        !this.$v.password.required && errors.push("Password is required");
-        return errors;
-      },
-      confirmPasswordErrors() {
-        const errors = [];
-        if (!this.$v.confirmPassword.$dirty) return errors;
-        !this.$v.confirmPassword.sameAsPassword &&
-          errors.push("Passwords doesn't match");
-        return errors;
-      },
-      phoneErrors() {
-        const errors = [];
-        if (!this.$v.phone.$dirty) return errors;
-        !this.$v.phone.required && errors.push("Contact Number is required");
-        return errors;
-      },
-      checkboxErrors() {
-        const errors = [];
-        if (!this.$v.checkbox.$dirty) return errors;
-        !this.$v.checkbox.required &&
-          errors.push(
-            "Please accept our Terms of Use & Privacy Policy before submitting the form"
-          );
-        return errors;
-      },
-    },
+    computed: {},
   }),
   methods: {
     validate() {
@@ -233,15 +177,16 @@ export default {
           address: this.address,
         })
         .then((response) => {
+          alert("Form submitted");
           console.log(response);
           console.log("Done");
           router.push({ name: "Patient List" });
         });
     },
-    reset() {
-      this.$refs.form.reset();
-      this.$refs.form.resetValidation();
-    },
+  },
+  reset() {
+    this.$refs.form.reset();
+    this.$refs.form.resetValidation();
   },
 };
 </script>

@@ -15,6 +15,8 @@
     "jwt-decode": "^3.0.0-beta.2",
     "moment": "^2.27.0",
     "nprogress": "^0.2.0",
+    "simple-vue-validator": "^0.16.0",
+    "vee-validate": "^4.0.0-beta.11",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-clock": "^0.3.1",
